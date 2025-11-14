@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" type="text/css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nexora Hivatalos Weboldala">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/ico" href="Icons/nexora_logo_tp.png" />
+    <link rel="stylesheet" href="/transition.css" type="text/css">
+    <script src="/transitions.js"></script>
+    <title>ÁSZF</title>
+
+
+    <div class='box'>
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+      </div>
+      
+
+      <div class="background"></div>
+
+    <script>
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+                // Scrolling down
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('hidden');
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+        });
+    </script>
+</head>
+<body>
+    <div id="particle-background"></div>
+
+    <div class="transition transition-1 is-active"></div>
+    <header>
+        <button class="menu-toggle">☰</button>
+        <nav class="left">
+            <ul class="nav-menu">
+                <li><a href="/webshop/shop.html" title="Webshop"><img src="/Icons/bags-shopping.webp" alt="Webshop"></a></li>
+                <li><a href="/ÁSZF/aszf.html" title="ÁSZF"><img src="/Icons/terms-info.webp" alt="ÁSZF"></a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <a href="/index.html" title="Főoldal"><img src="/Icons/nexora_logo_tp.webp" alt="Logo"></a>
+        </div>
+        <nav class="right">
+            <ul class="nav-menu2">
+                <li><a href="/GYIK/gyik.html" title="FAQ"><img src="/Icons/question-square.webp" alt="FAQ"></a></li>
+                <li><a href="/Kontakt/kontakt.html" title="Elérhetőségek"><img src="/Icons/clip-mail.webp" alt="Elérhetőségek"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main style="z-index: 1;">
+        <div class="content">
+            <div class="faq">
+                <h3>Általános Szerződési Feltételek (ÁSZF)</h3>
+                <p>A Nexora online katalógus használatával Ön elfogadja az alábbi feltételeket. Kérjük, figyelmesen olvassa el az Általános Szerződési Feltételeket, mielőtt használja a szolgáltatásainkat.</p>
+            </div>
+            <div class="faq">
+                <h3>1. Szolgáltatás leírása</h3>
+                <p>A Nexora egy online katalógus, amely lehetőséget biztosít termékek, szolgáltatások vagy információk böngészésére. A katalógus kizárólag tájékoztató jellegű, nem minősül ajánlattételnek.</p>
+            </div>
+            <div class="faq">
+                <h3>2. Felhasználási feltételek</h3>
+                <p>A katalógus használata ingyenes. A felhasználó köteles a szolgáltatást rendeltetésszerűen használni, és tartózkodni minden olyan tevékenységtől, amely a rendszer működését veszélyezteti vagy más felhasználók jogait sérti.</p>
+            </div>
+            <div class="faq">
+                <h3>3. Adatvédelem</h3>
+                <p>A Nexora nem gyűjt személyes adatokat, és nem tárol felhasználói információkat. Az oldal használata anonim módon történik.</p>
+            </div>
+            <div class="faq">
+                <h3>4. Felelősség kizárása</h3>
+                <p>A katalógusban szereplő információk pontosságáért és teljességéért nem vállalunk felelősséget. Fenntartjuk a jogot az adatok előzetes értesítés nélküli módosítására.</p>
+            </div>
+            <div class="faq">
+                <h3>5. Kapcsolat</h3>
+                <p>Bármilyen kérdés vagy észrevétel esetén kérjük, forduljon hozzánk bizalommal az iskola által megadott elérhetőségeken keresztül.</p>
+            </div>
+        </div>
+        <div style="height: 0px;"></div> <!-- Extra content to make page scrollable -->
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Nexora. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navMenu2 = document.querySelector('.nav-menu2');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                navMenu2.classList.toggle('active');
+            });
+        });
+    </script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script>
+    const particleCount = 150;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        
+        const svg = d3.select("#particle-background").append("svg");
+        const particles = [];
+        
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            radius: Math.random() * 3 + 1,
+            speedY: Math.random() * 1 + 0.5,
+            opacity: Math.random() * 0.5 + 0.3
+          });
+        }
+        
+        const circles = svg.selectAll("circle")
+          .data(particles)
+          .enter()
+          .append("circle")
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y)
+          .attr("r", d => d.radius)
+          .style("fill", "#0f0")
+          .style("opacity", d => d.opacity);
+        
+        function animateParticles() {
+          circles.each(function(d) {
+            d.y += d.speedY;
+            if (d.y > h) {
+              d.y = 0;
+              d.x = Math.random() * w;
+            }
+          })
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y);
+          requestAnimationFrame(animateParticles);
+        }
+        
+        animateParticles();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqs = document.querySelectorAll('.faq h3');
+            faqs.forEach(faq => {
+                faq.addEventListener('click', () => {
+                    const content = faq.nextElementSibling;
+                    if (content.classList.contains('active')) {
+                        content.style.maxHeight = null;
+                        content.classList.remove('active');
+                    } else {
+                        content.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+        </script>
+</body>
+</html>
