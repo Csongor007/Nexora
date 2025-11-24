@@ -2,6 +2,10 @@
 
 ###### A világ legszélesebb kínálatú webáruháza.
 
+## ❗ Szükséges szoftverek
+
+- [Node.JS](https://nodejs.org/)
+
 ## 🖥️ A projekt indítása
 
 1. `npm install` - Telepíti a szükséges csomagokat.
