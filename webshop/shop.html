@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="transition.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="transitions.js"></script>
+    <title>Webshop</title>
+
+    <div class="box">
+      <div class="wave -one"></div>
+      <div class="wave -two"></div>
+      <div class="wave -three"></div>
+    </div>
+
+    <script>
+      let lastScrollTop = 0;
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop) {
+          // Scrolling down
+          header.classList.add("hidden");
+        } else {
+          // Scrolling up
+          header.classList.remove("hidden");
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+      });
+    </script>
+  </head>
+  <body>
+    <div id="particle-background"></div>
+    <div class="transition transition-1 is-active"></div>
+    <header>
+      <button class="menu-toggle">☰</button>
+      <nav class="left">
+        <ul class="nav-menu">
+          <li>
+            <a href="/webshop/shop.html" title="Webshop"><img src="/Icons/bags-shopping.webp" alt="Webshop" /></a>
+          </li>
+          <li>
+            <a href="/ÁSZF/aszf.html" title="ÁSZF"><img src="/Icons/terms-info.webp" alt="ÁSZF" /></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="logo">
+        <a href="/index.html" title="Főoldal"><img src="/Icons/nexora_logo_tp.webp" alt="Logo" /></a>
+      </div>
+      <nav class="right">
+        <ul class="nav-menu2">
+          <li>
+            <a href="/GYIK/gyik.html" title="FAQ"><img src="/Icons/question-square.webp" alt="FAQ" /></a>
+          </li>
+          <li>
+            <a href="/Kontakt/kontakt.html" title="Elérhetőségek"
+              ><img src="/Icons/clip-mail.webp" alt="Elérhetőségek"
+            /></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main style="display: flex; align-items: flex-start">
+      <!-- Filters Section -->
+      <div class="filters">
+        <!-- kereső-->
+        <h1
+          style="
+            margin-bottom: 0px;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            font-weight: bolder;
+            justify-self: left;
+            position: relative;
+          ">
+          Keresés:
+        </h1>
+        <input type="text" id="search" placeholder="Keresés..." class="search" />
+        <!-- kereső-->
+
+        <h1
+          style="
+            margin-bottom: 0px;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            font-weight: bolder;
+            justify-self: left;
+            position: relative;
+            top: 10px;
+          ">
+          Szűrők:
+        </h1>
+
+        <!-- márka szűrő-->
+        <h2
+          style="
+            margin-bottom: 0px;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            font-weight: bolder;
+            justify-self: left;
+            position: relative;
+            top: 10px;
+          ">
+          Márka:
+        </h2>
+
+        <button style="position: relative; top: -70px; left: 150px" class="tags">Összes</button>
+
+        <div class="marka-gombok">
+          <button class="tags brands">Szűrő1</button>
+          <button class="tags brands">Szűrő2</button>
+          <button class="tags brands">Szűrő3</button>
+        </div>
+
+        <!-- osztály szűrő-->
+        <h2
+          style="
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            font-weight: bolder;
+            position: relative;
+          ">
+          Osztály:
+        </h2>
+
+        <div class="osztalyok">
+          <button class="tags class">Alszűrő1</button>
+          <button class="tags class">Alszűrő2</button>
+          <button class="tags class">Alszűrő3</button>
+        </div>
+      </div>
+
+      <!-- Cars Section -->
+      <div class="keret">
+        <div class="modok terrorbenz mercedes drift track">
+          <img src="office.webp" alt="office" class="kepek" />
+          <p class="nev">Termék1</p>
+          <button
+            class="hover-anim"
+            style="
+              background-image: url(kofi_logo.webp);
+              background-repeat: no-repeat;
+              width: 40%;
+              height: 15%;
+              background-size: 100%;
+              background-color: transparent;
+              border-color: transparent;
+              border-radius: 10px;
+              position: relative;
+              left: -10px;
+            "></button>
+          <button
+            class="hover-anim"
+            style="
+              background-repeat: no-repeat;
+              width: 40%;
+              height: 10%;
+              background-size: 102%;
+              background-color: transparent;
+              border-color: transparent;
+              border-radius: 10px;
+              position: relative;
+              left: 8px;
+              top: -13px;
+            "></button>
+        </div>
+        <div class="modok amon suzuki track">
+          <img src="windows.webp" alt="windows" class="kepek" />
+          <p class="nev">Termék2</p>
+          <button
+            class="hover-anim"
+            style="
+              background-image: url(kofi_logo.webp);
+              background-repeat: no-repeat;
+              width: 40%;
+              height: 15%;
+              background-size: 100%;
+              background-color: transparent;
+              border-color: transparent;
+              border-radius: 10px;
+              position: relative;
+              left: -10px;
+            "></button>
+        </div>
+        <div class="modok mercedes amon drift">
+          <img src="linux.webp" alt="Linux" class="kepek" />
+          <p class="nev">Termék3</p>
+          <button
+            class="hover-anim"
+            style="
+              background-image: url(kofi_logo.webp);
+              background-repeat: no-repeat;
+              width: 40%;
+              height: 15%;
+              background-size: 100%;
+              background-color: transparent;
+              border-color: transparent;
+              border-radius: 10px;
+              position: relative;
+              left: -10px;
+            "></button>
+          <button
+            class="hover-anim"
+            style="
+              background-repeat: no-repeat;
+              width: 40%;
+              height: 10%;
+              background-size: 102%;
+              background-color: transparent;
+              border-color: transparent;
+              border-radius: 10px;
+              position: relative;
+              left: 8px;
+              top: -13px;
+            "></button>
+        </div>
+      </div>
+      <div style="height: 100px"></div>
+      <!-- Extra content to make page scrollable -->
+    </main>
+
+    <footer>
+      <p>&copy; 2025 RRM. All rights reserved.</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navMenu = document.querySelector(".nav-menu");
+        const navMenu2 = document.querySelector(".nav-menu2");
+
+        menuToggle.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          navMenu2.classList.toggle("active");
+        });
+      });
+    </script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script>
+      const particleCount = 150;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      const svg = d3.select("#particle-background").append("svg");
+      const particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          radius: Math.random() * 3 + 1,
+          speedY: Math.random() * 1 + 0.5,
+          opacity: Math.random() * 0.5 + 0.3,
+        });
+      }
+
+      const circles = svg
+        .selectAll("circle")
+        .data(particles)
+        .enter()
+        .append("circle")
+        .attr("cx", (d) => d.x)
+        .attr("cy", (d) => d.y)
+        .attr("r", (d) => d.radius)
+        .style("fill", "#0f0")
+        .style("opacity", (d) => d.opacity);
+
+      function animateParticles() {
+        circles
+          .each(function (d) {
+            d.y += d.speedY;
+            if (d.y > h) {
+              d.y = 0;
+              d.x = Math.random() * w;
+            }
+          })
+          .attr("cx", (d) => d.x)
+          .attr("cy", (d) => d.y);
+        requestAnimationFrame(animateParticles);
+      }
+
+      animateParticles();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const faqs = document.querySelectorAll(".faq h3");
+        faqs.forEach((faq) => {
+          faq.addEventListener("click", () => {
+            const content = faq.nextElementSibling;
+            if (content.classList.contains("active")) {
+              content.style.maxHeight = null;
+              content.classList.remove("active");
+            } else {
+              content.classList.add("active");
+              content.style.maxHeight = content.scrollHeight + "px";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
