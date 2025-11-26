@@ -32,6 +32,16 @@
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
       });
+      function filterByCategory(category) {
+        const cars = document.querySelectorAll(".modok");
+        cars.forEach((car) => {
+          if (category === "all" || car.classList.contains(category)) {
+            car.style.display = "block";
+          } else {
+            car.style.display = "none";
+          }
+        });
+      }
     </script>
   </head>
   <body>
@@ -108,12 +118,12 @@
           Márka:
         </h2>
 
-        <button style="position: relative; top: -70px; left: 150px" class="tags">Összes</button>
+        <button style="position: relative; top: -90px; left: 225px" class="tags">Összes</button>
 
         <div class="marka-gombok">
-          <button class="microsoft">Microsoft</button>
-          <button class="linux">Linux</button>
-          <button class="tags brands">Szűrő3</button>
+          <button onclick="filterByCategory('microsoft')" class="tags brands">Microsoft</button>
+          <button onclick="filterByCategory('linux')" class="tags brands">Linux</button>
+          <button onclick="filterByCategory('Szűrő3')" class="tags brands">Szűrő3</button>
         </div>
 
         <!-- osztály szűrő-->
@@ -130,14 +140,14 @@
         </h2>
 
         <div class="osztalyok">
-          <button class="szoftver">Szoftver</button>
-          <button class="operaciosrendszer">Operációs rendszer</button>
-          <button class="licensz">Licensz</button>
+          <button onclick="filterByCategory('szoftver')" class="tags class">Szoftver</button>
+          <button onclick="filterByCategory('operaciosrendszer')" class="tags class">Operációs rendszer</button>
+          <button onclick="filterByCategory('licensz')" class="tags class">Licensz</button>
         </div>
       </div>
 
       <div class="keret">
-        <div class="termek, licensz microsoft szoftver">
+        <div class="termek licensz microsoft szoftver">
           <img src="/img/office.webp" alt="office" class="kepek" />
           <p class="nev">Termék1</p>
           <button
@@ -169,7 +179,7 @@
               top: -13px;
             "></button>
         </div>
-        <div class="termek, licensz microsoft operaciosrendszer">
+        <div class="termek licensz microsoft operaciosrendszer">
           <img src="/img/windows.webp" alt="windows" class="kepek" />
           <p class="nev">Termék2</p>
           <button
@@ -186,7 +196,7 @@
               left: -10px;
             "></button>
         </div>
-        <div class="termek, licensz operaciosrendszer linux">
+        <div class="termek licensz operaciosrendszer linux">
           <img src="/img/linux.webp" alt="Linux" class="kepek" />
           <p class="nev">Termék3</p>
           <button
