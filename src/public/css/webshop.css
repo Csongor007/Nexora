@@ -334,7 +334,7 @@ footer {
   transform: translateY(0);
 }
 
-.modok {
+.termek {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   border-color: rgb(46, 173, 46);
@@ -594,7 +594,7 @@ footer {
     left: 0;
   }
 
-  .modok {
+  .termek {
     width: 90%; /* Teljes szélesség, de legfeljebb 90% */
     max-width: 450px; /* Maximális szélesség */
     margin: 0 auto; /* Középre igazítás és margó */
