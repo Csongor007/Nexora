@@ -509,6 +509,7 @@ footer {
 
 @media (max-width: 1280px) {
   main {
+    margin: 0;
     flex-direction: column;
     align-items: center !important;
   }
@@ -553,6 +554,7 @@ footer {
     width: 100%;
     max-width: 450px;
     padding: 1rem;
+    margin-top: 10vh;
   }
 
   .tags {
@@ -574,7 +576,7 @@ footer {
 
   /* Logo */
   header .logo img {
-    max-height: 70px;
+    max-height: 90px;
   }
   body {
     max-width: 100%;
@@ -587,7 +589,7 @@ footer {
     align-items: center; /* Középre igazítás */
     justify-content: center; /* Középre igazítás */
     z-index: 1;
-    top: 1rem;
+    top: 5vh;
     width: 100%; /* Teljes szélesség */
     margin: 10 auto; /* Középre igazítás */
     max-width: 100dvw;
@@ -599,6 +601,7 @@ footer {
     width: 90%; /* Teljes szélesség, de legfeljebb 90% */
     max-width: 450px; /* Maximális szélesség */
     margin: 0 auto; /* Középre igazítás és margó */
+    margin-top: 4vh;
   }
 }
 
