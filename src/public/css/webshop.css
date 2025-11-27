@@ -409,12 +409,14 @@ footer {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 0.5rem;
+  margin: 0 auto;
 }
 
 .osztalyok {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: min-content min-content;
   gap: 0.5rem;
+  margin: 0 auto;
 }
 
 .replika {
@@ -430,7 +432,6 @@ footer {
 }
 
 .tags {
-  width: 115px;
   height: 50px;
   border-radius: 10px;
   background-color: transparent;
@@ -513,7 +514,9 @@ footer {
     flex-direction: column;
     align-items: center !important;
   }
-
+  .osztalyok{
+    font-size: smaller;
+  }
   /* Header */
   header {
     box-sizing: border-box;
