@@ -33,7 +33,7 @@
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
       });
       function filterByCategory(category) {
-        const cars = document.querySelectorAll(".modok");
+        const cars = document.querySelectorAll(".termek");
         cars.forEach((car) => {
           if (category === "all" || car.classList.contains(category)) {
             car.style.display = "block";
@@ -89,7 +89,7 @@
           ">
           Keresés:
         </h1>
-        <input type="text" id="search" placeholder="Keresés..." class="search" />
+        <input type="text" id="search" onkeyup="filter" placeholder="Keresés..." class="search" />
         <!-- kereső-->
 
         <h1
@@ -120,7 +120,7 @@
           Márka:
         </h2>
 
-        <button style="position: relative; top: -80px; left: 165px" class="tags">Összes</button>
+        <button style="position: relative; top: -80px; left: 165px" onclick="filterByCategory('termek')" class="tags">Összes</button>
 
         <div class="marka-gombok">
           <button onclick="filterByCategory('microsoft')" class="tags brands">Microsoft</button>
