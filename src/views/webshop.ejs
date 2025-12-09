@@ -33,12 +33,28 @@
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
       });
       function filterByCategory(category) {
-        const cars = document.querySelectorAll(".termek");
-        cars.forEach((car) => {
-          if (category === "all" || car.classList.contains(category)) {
-            car.style.display = "block";
+        const kategoriaszuro = document.querySelectorAll(".termek");
+
+        kategoriaszuro.forEach((kategoriaszuroElem) => {
+          if (category === "all" || kategoriaszuroElem.classList.contains(category)) {
+            kategoriaszuroElem.style.display = "block";
           } else {
-            car.style.display = "none";
+            kategoriaszuroElem.style.display = "none";
+          }
+        });
+      }
+
+      function filterSearch() {
+        const searchQuery = document.getElementById("search").value.toLowerCase();
+        const keresoszuro = document.querySelectorAll(".termek");
+
+        keresoszuro.forEach((keresoszuroElem) => {
+          const termekNev = keresoszuroElem.querySelector(".nev").innerText.toLowerCase();
+
+          if (termekNev.includes(searchQuery)) {
+            keresoszuroElem.style.display = "block";
+          } else {
+            keresoszuroElem.style.display = "none";
           }
         });
       }
@@ -89,7 +105,7 @@
           ">
           Keresés:
         </h1>
-        <input type="text" id="search" onkeyup="filter" placeholder="Keresés..." class="search" />
+        <input type="text" id="search" onkeyup="filterSearch()" placeholder="Keresés..." class="search" />
         <!-- kereső-->
 
         <h1
@@ -120,7 +136,9 @@
           Márka:
         </h2>
 
-        <button style="position: relative; top: -80px; left: 165px" onclick="filterByCategory('termek')" class="tags">Összes</button>
+        <button style="position: relative; top: -80px; left: 165px" onclick="filterByCategory('termek')" class="tags">
+          Összes
+        </button>
 
         <div class="marka-gombok">
           <button onclick="filterByCategory('microsoft')" class="tags brands">Microsoft</button>
