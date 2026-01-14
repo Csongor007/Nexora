@@ -150,7 +150,11 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 Nexora. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
+
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
     </footer>
 
     <script>
