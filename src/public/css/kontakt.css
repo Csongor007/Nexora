@@ -1,3 +1,86 @@
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-family: Orbitron, sans-serif;
+  color: #ffffff;
+  background-color: #333;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #555;
+}
+
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-family: Orbitron, sans-serif;
+  color: #ffffff;
+  background-color: #333;
+}
+label {
+  float: left;
+  color: #ccc;
+  font-weight: bolder;
+  font-size: large;
+}
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Orbitron, sans-serif;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 30px;
+  border-color: rgb(46, 173, 46);
+  border-width: 5px;
+  border-style: solid;
+  background: rgba(51, 51, 51, 0.1); /* enyhén átlátszó */
+  backdrop-filter: blur(6px); /* belső homályosítás */
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  animation: popupFade 0.25s ease;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+label {
+  font-family: Orbitron, sans-serif;
+}
+
 .background {
   position: fixed;
   top: 0;
@@ -369,7 +452,7 @@ footer {
 }
 .filters {
   border-radius: 30px;
-  background-color: rgba(51, 51, 51, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-color: rgb(46, 173, 46);
   border-style: solid;
   border-width: 5px;
@@ -485,15 +568,6 @@ footer {
   top: 800px;
   right: 50px;
 }
-.corner-image {
-  position: relative;
-  opacity: 0.7;
-  left: -150px;
-  top: -100px;
-  max-width: 1000px;
-  max-height: 1000px;
-  z-index: 1000;
-}
 
 .menu-toggle {
   display: none;
@@ -606,92 +680,7 @@ footer {
     margin: 0 auto; /* Középre igazítás és margó */
     margin-top: 4vh;
   }
-}
-/* Lebegő gomb */
-.floating-btn {
-  z-index: 10;
-  position: fixed;
-  bottom: 85px;
-  right: 25px;
-  width: 60px;
-  height: 60px;
-  background: rgb(46, 173, 46);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-.floating-btn:hover {
-  background: #555555;
-}
-
-/* Popup háttér – elhomályosított */
-.popup-overlay {
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(51, 51, 51, 0.3);
-  backdrop-filter: blur(6px); /* háttér blur */
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup {
-  background: rgba(27, 27, 27, 0.4); /* enyhén átlátszó */
-  backdrop-filter: blur(12px); /* belső homályosítás */
-  padding: 25px;
-  border-radius: 20px; /* lekerekített */
-  width: 340px;
-  border: 4px solid rgba(51, 51, 51, 0.6); /* vastagabb, üveges keret */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  animation: popupFade 0.25s ease;
-}
-
-@keyframes popupFade {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
+  .container {
+    margin-top: 150px;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.popup h2 {
-  margin-top: 0;
-  color: rgb(46, 173, 46);
-}
-
-.popup input {
-  font-family: Orbitron, sans-serif;
-  color: #ccc;
-  background-color: #333;
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-}
-
-.popup button {
-  font-family: Orbitron, sans-serif;
-  width: 100%;
-  padding: 10px;
-  background: rgb(46, 173, 46);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.popup button:hover {
-  background: #00c73c;
 }

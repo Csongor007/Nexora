@@ -253,6 +253,14 @@
             "></button>
         </div>
       </div>
+      <div class="floating-btn" id="floatingBtn">👤</div>
+
+      <!-- Popup háttér -->
+      <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popupContent">
+          <!-- Tartalom JS-ből töltődik -->
+        </div>
+      </div>
       <div style="height: 100px"></div>
       <!-- Extra content to make page scrollable -->
     </main>
@@ -333,6 +341,57 @@
           });
         });
       });
+
+      let loggedIn = false; // állapot
+
+      const btn = document.getElementById("floatingBtn");
+      const overlay = document.getElementById("popupOverlay");
+      const popup = document.getElementById("popupContent");
+
+      btn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+        renderPopup();
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) overlay.style.display = "none";
+      });
+
+      function renderPopup() {
+        if (!loggedIn) {
+          popup.innerHTML = `
+            <h2>Bejelentkezés</h2>
+            <input type="text" id="username" placeholder="Felhasználónév">
+            <input type="password" id="password" placeholder="Jelszó">
+            <button onclick="login()">Belépés</button>
+            <hr>
+            <button onclick="register()">Regisztráció</button>
+        `;
+        } else {
+          popup.innerHTML = `
+            <h2>Fiók adatok</h2>
+            <p><strong>Felhasználónév:</strong> demo_user</p>
+            <p><strong>Email:</strong> demo@example.com</p>
+            <hr>
+            <button onclick="logout()">Kijelentkezés</button>
+        `;
+        }
+      }
+
+      function login() {
+        // Itt majd backend ellenőrzés lesz
+        loggedIn = true;
+        renderPopup();
+      }
+
+      function register() {
+        alert("Itt nyílhatna meg a regisztrációs folyamat.");
+      }
+
+      function logout() {
+        loggedIn = false;
+        overlay.style.display = "none";
+      }
     </script>
   </body>
 </html>
