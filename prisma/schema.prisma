@@ -13,20 +13,26 @@ model felhasznalok {
   email       String   @db.VarChar(50)
   jelszo_hash String   @db.Text
   nev         String   @db.VarChar(50)
-  letrehozva  DateTime @db.Timestamp(0)
+  letrehozva  DateTime @default(now()) @db.Timestamp(0)
 }
 
 model feltoltokartya {
-  termek_id   Int    @id @db.UnsignedInt
+  kartya_id   Int    @id @default(autoincrement()) @db.UnsignedInt
+  termek_id   Int    @db.UnsignedInt
   szolgaltato String @db.VarChar(50)
   ertek       Int    @db.UnsignedInt
+
+  @@index([termek_id], map: "FK_feltoltokartya_termekek")
 }
 
 model jatekok {
-  termek_id         Int      @id @db.UnsignedInt
+  jatek_id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  termek_id         Int      @db.UnsignedInt
   platform          String   @db.VarChar(50)
   mufaj             String   @db.VarChar(50)
   megjelenesi_datum DateTime @db.DateTime(0)
+
+  @@index([termek_id], map: "FK_jatekok_termekek")
 }
 
 model kategoriak {
@@ -70,15 +76,20 @@ model szallitas {
 }
 
 model szoftverek {
-  termek_id          Int    @id @db.UnsignedInt
+  szoftver_id        Int    @id @default(autoincrement()) @db.UnsignedInt
+  termek_id          Int    @db.UnsignedInt
   licensz_tipus      String @db.VarChar(50)
   operacios_rendszer String @db.VarChar(50)
+
+  @@index([termek_id], map: "FK_szoftverek_termekek")
 }
 
 model termekek {
-  id           Int      @id @db.UnsignedInt
+  id           Int      @id @default(autoincrement()) @db.UnsignedInt
   nev          String   @db.VarChar(50)
   ar           Decimal  @db.Decimal(10, 2)
   kategoria_id Int      @db.UnsignedInt
   feltoltve    DateTime @db.Timestamp(0)
+
+  @@index([kategoria_id], map: "FK_termekek_kategoriak")
 }
