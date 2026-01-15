@@ -1,9 +1,14 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import {PrismaClient} from "./src/generated/prisma/index.js";
 
 const app = express();
 const PORT = 3000;
+
+const DB = new PrismaClient();
+
+console.log(await DB.felhasznalok.findMany());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
