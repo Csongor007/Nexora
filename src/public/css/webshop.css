@@ -39,7 +39,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000000; /* Slightly lighter grey than the header */
+  background-color: #181717;
   background-size: cover;
 
   background-repeat: no-repeat;
@@ -335,7 +335,8 @@ footer {
 }
 
 .termek {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(51, 51, 51, 0.5);
+  backdrop-filter: blur(6px);
   border-radius: 30px;
   border-color: rgb(46, 173, 46);
   border-style: solid;
@@ -370,6 +371,7 @@ footer {
 .filters {
   border-radius: 30px;
   background-color: rgba(51, 51, 51, 0.5);
+  backdrop-filter: blur(6px);
   border-color: rgb(46, 173, 46);
   border-style: solid;
   border-width: 5px;
@@ -388,8 +390,6 @@ footer {
   top: 20 px;
   image-resolution: inherit;
   border-radius: 30px;
-  border-style: solid;
-  border-width: 2.5px;
   object-fit: cover;
 }
 .search {
@@ -639,19 +639,19 @@ footer {
   width: 100%;
   height: 100%;
   background: rgba(51, 51, 51, 0.3);
-  backdrop-filter: blur(6px); /* háttér blur */
+  backdrop-filter: blur(6px);
   display: none;
   justify-content: center;
   align-items: center;
 }
 
 .popup {
-  background: rgba(27, 27, 27, 0.4); /* enyhén átlátszó */
-  backdrop-filter: blur(12px); /* belső homályosítás */
+  background: rgba(27, 27, 27, 0.4); 
+  backdrop-filter: blur(12px);
   padding: 25px;
-  border-radius: 20px; /* lekerekített */
+  border-radius: 20px;
   width: 340px;
-  border: 4px solid rgba(51, 51, 51, 0.6); /* vastagabb, üveges keret */
+  border: 4px solid rgba(46, 173, 46);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   animation: popupFade 0.25s ease;
 }
@@ -676,7 +676,7 @@ footer {
   font-family: Orbitron, sans-serif;
   color: #ccc;
   background-color: #333;
-  width: 100%;
+  width: 92%;
   padding: 10px;
   margin: 8px 0;
   border-radius: 8px;
@@ -694,4 +694,7 @@ footer {
 }
 .popup button:hover {
   background: #00c73c;
+}
+p {
+  color: #ccc;
 }

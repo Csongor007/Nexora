@@ -70,7 +70,8 @@ h3 {
 .faq h3 {
   position: relative;
   cursor: pointer;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.5);
+  backdrop-filter: blur(6px);
   color: white;
   padding: 10px 15px;
   margin: 0;
@@ -86,7 +87,8 @@ h3 {
 }
 .faq p {
   font-family: "Orbitron", sans-serif;
-  background-color: #444;
+  background-color: rgba(51, 51, 51, 0.5);
+  backdrop-filter: blur(6px);
   color: white;
   margin: 0;
   padding: 10px;

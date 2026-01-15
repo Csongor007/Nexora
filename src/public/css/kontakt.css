@@ -41,7 +41,7 @@ label {
   font-size: large;
 }
 input[type="submit"] {
-  background-color: #04aa6d;
+  background-color: rgb(46, 173, 46);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -59,8 +59,8 @@ input[type="submit"]:hover {
   border-color: rgb(46, 173, 46);
   border-width: 5px;
   border-style: solid;
-  background: rgba(51, 51, 51, 0.1); /* enyhén átlátszó */
-  backdrop-filter: blur(6px); /* belső homályosítás */
+  background-color: rgba(51, 51, 51, 0.5);
+  backdrop-filter: blur(6px);
   padding: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   animation: popupFade 0.25s ease;
@@ -122,7 +122,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000000; /* Slightly lighter grey than the header */
+  background-color: #181717;
   background-size: cover;
 
   background-repeat: no-repeat;
