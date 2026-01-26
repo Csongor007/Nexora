@@ -18,14 +18,14 @@ app.use(express.static("src/public"));
 // Session beállítás
 app.use(
   session({
-    secret: "valami-nagyon-titkos-kulcs-2025-nexora", // Változtasd meg valami véletlenszerűre!
+    secret: "valami-nagyon-titkos-kulcs-2025-nexora",
     resave: false,
     saveUninitialized: false,
-    cookie: { 
-      secure: false, // true legyen HTTPS-nél
-      maxAge: 24 * 60 * 60 * 1000 // 24 óra
-    }
-  })
+    cookie: {
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
 );
 
 // View engine
@@ -58,14 +58,14 @@ app.post("/register", async (req, res) => {
 
     // Validáció
     if (!email || !password || !nev) {
-      if (req.headers['content-type'] === 'application/json') {
+      if (req.headers["content-type"] === "application/json") {
         return res.status(400).json({ error: "Minden mező kitöltése kötelező!" });
       }
       return res.status(400).send("Minden mező kitöltése kötelező!");
     }
 
     if (password.length < 6) {
-      if (req.headers['content-type'] === 'application/json') {
+      if (req.headers["content-type"] === "application/json") {
         return res.status(400).json({ error: "A jelszónak minimum 6 karakter hosszúnak kell lennie!" });
       }
       return res.status(400).send("A jelszónak minimum 6 karakter hosszúnak kell lennie!");
@@ -73,11 +73,11 @@ app.post("/register", async (req, res) => {
 
     // Ellenőrizzük, hogy az email már létezik-e
     const existingUser = await DB.felhasznalok.findFirst({
-      where: { email: decodedEmail }
+      where: { email: decodedEmail },
     });
 
     if (existingUser) {
-      if (req.headers['content-type'] === 'application/json') {
+      if (req.headers["content-type"] === "application/json") {
         return res.status(400).json({ error: "Ez az email cím már regisztrálva van!" });
       }
       return res.status(400).send("Ez az email cím már regisztrálva van!");
@@ -91,8 +91,8 @@ app.post("/register", async (req, res) => {
       data: {
         email: decodedEmail,
         jelszo_hash,
-        nev
-      }
+        nev,
+      },
     });
 
     // Automatikus bejelentkezés
@@ -100,16 +100,19 @@ app.post("/register", async (req, res) => {
     req.session.user = {
       id: newUser.id,
       email: newUser.email,
-      nev: newUser.nev
+      nev: newUser.nev,
     };
 
-    if (req.headers['content-type'] === 'application/json') {
+    if (req.headers["content-type"] === "application/json") {
       return res.json({ success: true, user: req.session.user });
     }
-    res.redirect("/webshop");
+
+    // Visszairányítás arra az oldalra, ahonnan jött
+    const returnUrl = req.get("Referer") || "/webshop";
+    res.redirect(returnUrl);
   } catch (error) {
     console.error("Regisztráció hiba:", error);
-    if (req.headers['content-type'] === 'application/json') {
+    if (req.headers["content-type"] === "application/json") {
       return res.status(500).json({ error: "Hiba történt a regisztráció során!" });
     }
     res.status(500).send("Hiba történt a regisztráció során!");
@@ -123,7 +126,7 @@ app.post("/login", async (req, res) => {
 
     // Validáció
     if (!email || !password) {
-      if (req.headers['content-type'] === 'application/json') {
+      if (req.headers["content-type"] === "application/json") {
         return res.status(400).json({ error: "Email és jelszó megadása kötelező!" });
       }
       return res.status(400).send("Email és jelszó megadása kötelező!");
@@ -131,11 +134,11 @@ app.post("/login", async (req, res) => {
 
     // Felhasználó keresése
     const user = await DB.felhasznalok.findFirst({
-      where: { email }
+      where: { email },
     });
 
     if (!user) {
-      if (req.headers['content-type'] === 'application/json') {
+      if (req.headers["content-type"] === "application/json") {
         return res.status(401).json({ error: "Hibás email vagy jelszó!" });
       }
       return res.status(401).send("Hibás email vagy jelszó!");
@@ -145,7 +148,7 @@ app.post("/login", async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.jelszo_hash);
 
     if (!passwordMatch) {
-      if (req.headers['content-type'] === 'application/json') {
+      if (req.headers["content-type"] === "application/json") {
         return res.status(401).json({ error: "Hibás email vagy jelszó!" });
       }
       return res.status(401).send("Hibás email vagy jelszó!");
@@ -156,16 +159,19 @@ app.post("/login", async (req, res) => {
     req.session.user = {
       id: user.id,
       email: user.email,
-      nev: user.nev
+      nev: user.nev,
     };
 
-    if (req.headers['content-type'] === 'application/json') {
+    if (req.headers["content-type"] === "application/json") {
       return res.json({ success: true, user: req.session.user });
     }
-    res.redirect("/webshop");
+
+    // Visszairányítás arra az oldalra, ahonnan jött
+    const returnUrl = req.get("Referer") || "/webshop";
+    res.redirect(returnUrl);
   } catch (error) {
     console.error("Bejelentkezés hiba:", error);
-    if (req.headers['content-type'] === 'application/json') {
+    if (req.headers["content-type"] === "application/json") {
       return res.status(500).json({ error: "Hiba történt a bejelentkezés során!" });
     }
     res.status(500).send("Hiba történt a bejelentkezés során!");
@@ -174,17 +180,20 @@ app.post("/login", async (req, res) => {
 
 // Logout
 app.get("/logout", (req, res) => {
+  // Mentjük el az aktuális oldalt
+  const returnUrl = req.get("Referer") || "/";
+
   req.session.destroy((err) => {
     if (err) {
       console.error("Kijelentkezés hiba:", err);
     }
-    res.redirect("/webshop");
+    // Visszairányítás arra az oldalra, ahonnan jött
+    res.redirect(returnUrl);
   });
 });
 
-app.get('/aszf', (req, res) => {
-    // req.user HELYETT req.session.user kell!
-    res.render('aszf', { user: req.session.user || null }); 
+app.get("/aszf", (req, res) => {
+  res.render("aszf", { user: req.session.user || null });
 });
 
 app.get("/gyik", (req, res) => {
