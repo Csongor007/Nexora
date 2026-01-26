@@ -51,7 +51,9 @@
             <a href="/kontakt" title="Elérhetőségek"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a>
           </li>
           <li>
-            <a href="#" title="Bejelentkezés"><img src="/img/icons/profile.webp" alt="Bejelentkezés" class="floating-btn" id="floatingBtn" /></a>
+            <a href="#" title="Bejelentkezés"
+              ><img src="/img/icons/profile.webp" alt="Bejelentkezés" class="floating-btn" id="floatingBtn"
+            /></a>
           </li>
         </ul>
       </nav>
@@ -75,8 +77,9 @@
           <textarea
             id="subject"
             name="subject"
-            placeholder="Megosztani kívánt információid"
+            placeholder="Megosztani kívánt információid (max. 300 karakter)"
             style="height: 200px"
+            maxlength="300"
             required></textarea>
 
           <input type="submit" value="Küldés" />
@@ -91,17 +94,12 @@
     </div>
 
     <footer>
-
       <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
 
-
       <script>
-
         document.getElementById("year").textContent = new Date().getFullYear();
-
       </script>
-
-    </footer> 
+    </footer>
 
     <script>
       window.loggedInUser = <%- (typeof user !== 'undefined' && user) ? JSON.stringify(user) : 'null' %>;
