@@ -50,7 +50,9 @@
             <a href="/kontakt" title="Elérhetőségek"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a>
           </li>
           <li>
-            <a href="#" title="Bejelentkezés"><img src="/img/icons/profile.webp" alt="Bejelentkezés" class="floating-btn" id="floatingBtn" /></a>
+            <a href="#" title="Bejelentkezés"
+              ><img src="/img/icons/profile.webp" alt="Bejelentkezés" class="floating-btn" id="floatingBtn"
+            /></a>
           </li>
         </ul>
       </nav>
@@ -132,7 +134,7 @@
         </div>
       </div>
 
-      <div class="content" style="margin-top: 100px;">
+      <div class="content" style="margin-top: 100px">
         <div class="faq">
           <h3>Gyakran Ismételt Kérdések (GYIK)</h3>
           <p>
@@ -236,17 +238,25 @@
     </div>
 
     <footer>
-
       <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
 
-
       <script>
-
         document.getElementById("year").textContent = new Date().getFullYear();
-
       </script>
+    </footer>
+    <script>
+      document.querySelectorAll(".faq h3").forEach((header) => {
+        header.addEventListener("click", () => {
+          const content = header.nextElementSibling;
 
-    </footer> 
+          if (content.classList.contains("active")) {
+            content.classList.remove("active");
+          } else {
+            content.classList.add("active");
+          }
+        });
+      });
+    </script>
 
     <script>
       // Fontos: A szervernek át kell adnia a user-t a renderelésnél!
