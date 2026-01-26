@@ -54,6 +54,7 @@ app.get("/webshop", (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const { email, password, nev } = req.body;
+    const decodedEmail = decodeURIComponent(email);
 
     // Validáció
     if (!email || !password || !nev) {
@@ -72,7 +73,7 @@ app.post("/register", async (req, res) => {
 
     // Ellenőrizzük, hogy az email már létezik-e
     const existingUser = await DB.felhasznalok.findFirst({
-      where: { email }
+      where: { email: decodedEmail }
     });
 
     if (existingUser) {
@@ -88,7 +89,7 @@ app.post("/register", async (req, res) => {
     // Felhasználó létrehozása
     const newUser = await DB.felhasznalok.create({
       data: {
-        email,
+        email: decodedEmail,
         jelszo_hash,
         nev
       }
@@ -181,16 +182,17 @@ app.get("/logout", (req, res) => {
   });
 });
 
-app.get("/aszf", (req, res) => {
-  res.render("aszf");
+app.get('/aszf', (req, res) => {
+    // req.user HELYETT req.session.user kell!
+    res.render('aszf', { user: req.session.user || null }); 
 });
 
 app.get("/gyik", (req, res) => {
-  res.render("gyik");
+  res.render("gyik", { user: req.session.user || null });
 });
 
 app.get("/kontakt", (req, res) => {
-  res.render("kontakt");
+  res.render("kontakt", { user: req.session.user || null });
 });
 
 app.listen(PORT, () => {

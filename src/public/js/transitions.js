@@ -11,6 +11,16 @@ function initTransition(isBack = false) {
 
   anchors.forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
+
+      if (anchor.hasAttribute("data-no-transition")) {
+        return;
+      }
+
+      if (!anchor.getAttribute("href") || anchor.getAttribute("href") === "#") {
+        e.preventDefault();
+        return;
+      }
+
       e.preventDefault();
       const target = anchor.href;
 

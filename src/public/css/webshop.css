@@ -607,28 +607,7 @@ footer {
     margin-top: 4vh;
   }
 }
-/* Lebegő gomb */
-.floating-btn {
-  z-index: 10;
-  position: fixed;
-  bottom: 85px;
-  right: 25px;
-  width: 60px;
-  height: 60px;
-  background: rgb(46, 173, 46);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-.floating-btn:hover {
-  background: #555555;
-}
+
 
 /* Popup háttér – elhomályosított */
 .popup-overlay {
