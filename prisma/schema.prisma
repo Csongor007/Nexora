@@ -10,7 +10,7 @@ datasource db {
 
 model felhasznalok {
   id          Int      @id @default(autoincrement()) @db.UnsignedInt
-  email       String   @db.VarChar(50)
+  email       String   @unique @db.VarChar(50) 
   jelszo_hash String   @db.Text
   nev         String   @db.VarChar(50)
   letrehozva  DateTime @default(now()) @db.Timestamp(0)

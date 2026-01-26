@@ -23,15 +23,14 @@
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
         if (currentScroll > lastScrollTop) {
-          // Scrolling down
           header.classList.add("hidden");
         } else {
-          // Scrolling up
           header.classList.remove("hidden");
         }
 
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
       });
+      
       function filterByCategory(category) {
         const kategoriaszuro = document.querySelectorAll(".termek");
 
@@ -81,10 +80,10 @@
       <nav class="right">
         <ul class="nav-menu2">
           <li>
-            <a href="/gyik" title="FAQ"><img src="/img/icons/question-square.webp" alt="FAQ" /></a>
+            <a href="/kontakt" title="Elérhetőségek"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a>
           </li>
           <li>
-            <a href="/kontakt" title="Elérhetőségek"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a>
+            <a href="/gyik" title="FAQ"><img src="/img/icons/question-square.webp" alt="FAQ" /></a>
           </li>
         </ul>
       </nav>
@@ -92,7 +91,6 @@
     <main style="display: flex; align-items: flex-start">
       <!-- Filters Section -->
       <div class="filters">
-        <!-- kereső-->
         <h1
           style="
             font-size: 30px;
@@ -106,7 +104,6 @@
           Keresés:
         </h1>
         <input type="text" id="search" onkeyup="filterSearch()" placeholder="Keresés..." class="search" />
-        <!-- kereső-->
 
         <h1
           style="
@@ -122,7 +119,6 @@
           Szűrők:
         </h1>
 
-        <!-- márka szűrő-->
         <h2
           style="
             margin-bottom: 0px;
@@ -146,7 +142,6 @@
           <button onclick="filterByCategory('Szűrő3')" class="tags brands">Szűrő3</button>
         </div>
 
-        <!-- osztály szűrő-->
         <h2
           style="
             margin-bottom: 1rem;
@@ -276,6 +271,7 @@
             ">Termék Információℹ️</button>
         </div>
       </div>
+      
       <div class="floating-btn" id="floatingBtn">👤</div>
 
       <!-- Popup háttér -->
@@ -285,12 +281,10 @@
         </div>
       </div>
       <div style="height: 100px"></div>
-      <!-- Extra content to make page scrollable -->
     </main>
 
     <footer>
       <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
-
       <script>
         document.getElementById("year").textContent = new Date().getFullYear();
       </script>
@@ -308,6 +302,7 @@
         });
       });
     </script>
+    
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script>
       const particleCount = 150;
@@ -370,56 +365,153 @@
         });
       });
 
-      let loggedIn = false; // állapot
+      // Backend-ről érkező user adat
+      // Backend-ről érkező user adat
+const loggedInUser = <%- user ? JSON.stringify(user) : 'null' %>;
 
-      const btn = document.getElementById("floatingBtn");
-      const overlay = document.getElementById("popupOverlay");
-      const popup = document.getElementById("popupContent");
+const btn = document.getElementById("floatingBtn");
+const overlay = document.getElementById("popupOverlay");
+const popup = document.getElementById("popupContent");
 
-      btn.addEventListener("click", () => {
-        overlay.style.display = "flex";
-        renderPopup();
+btn.addEventListener("click", () => {
+  overlay.style.display = "flex";
+  renderPopup();
+});
+
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) overlay.style.display = "none";
+});
+
+function renderPopup() {
+  if (!loggedInUser) {
+    showLoginForm();
+  } else {
+    showUserProfile();
+  }
+}
+
+function showLoginForm() {
+  popup.innerHTML = `
+    <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Bejelentkezés</h2>
+    <form id="loginForm" style="display: flex; flex-direction: column; gap: 10px;">
+      <input type="email" id="loginEmail" name="email" placeholder="Email cím" required 
+        style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
+      <input type="password" id="loginPassword" name="password" placeholder="Jelszó" required
+        style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
+      <div id="loginError" style="color: red; display: none; font-family: Orbitron, sans-serif;"></div>
+      <button type="submit" style="padding: 10px; background: #0f0; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-family: Orbitron, sans-serif;">
+        Belépés
+      </button>
+    </form>
+    <hr style="border-color: #0f0; margin: 20px 0;">
+    <p style="font-family: Orbitron, sans-serif; color: #0f0;">Még nincs fiókod?</p>
+    <button onclick="showRegisterForm()" style="padding: 10px; background: transparent; color: #0f0; border: 2px solid #0f0; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; font-family: Orbitron, sans-serif;">
+      Regisztráció
+    </button>
+  `;
+
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const errorDiv = document.getElementById('loginError');
+
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
       });
 
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) overlay.style.display = "none";
+      const data = await response.json();
+
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        errorDiv.textContent = data.error || 'Hiba történt a bejelentkezés során';
+        errorDiv.style.display = 'block';
+      }
+    } catch (error) {
+      errorDiv.textContent = 'Hálózati hiba történt';
+      errorDiv.style.display = 'block';
+    }
+  });
+}
+
+function showRegisterForm() {
+  popup.innerHTML = `
+    <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Regisztráció</h2>
+    <form id="registerForm" style="display: flex; flex-direction: column; gap: 10px;">
+      <input type="text" id="registerNev" name="nev" placeholder="Név" required 
+        style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
+      <input type="email" id="registerEmail" name="email" placeholder="Email cím" required 
+        style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
+      <input type="password" id="registerPassword" name="password" placeholder="Jelszó (min. 6 karakter)" required minlength="6"
+        style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
+      <div id="registerError" style="color: red; display: none; font-family: Orbitron, sans-serif;"></div>
+      <button type="submit" style="padding: 10px; background: #0f0; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-family: Orbitron, sans-serif;">
+        Regisztráció
+      </button>
+    </form>
+    <hr style="border-color: #0f0; margin: 20px 0;">
+    <p style="font-family: Orbitron, sans-serif; color: #0f0;">Van már fiókod?</p>
+    <button onclick="showLoginForm()" style="padding: 10px; background: transparent; color: #0f0; border: 2px solid #0f0; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; font-family: Orbitron, sans-serif;">
+      Bejelentkezés
+    </button>
+  `;
+
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nev = document.getElementById('registerNev').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const errorDiv = document.getElementById('registerError');
+
+    try {
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nev, email, password })
       });
 
-      function renderPopup() {
-        if (!loggedIn) {
-          popup.innerHTML = `
-            <h2>Bejelentkezés</h2>
-            <input type="text" id="username" placeholder="Felhasználónév">
-            <input type="password" id="password" placeholder="Jelszó">
-            <button onclick="login()">Belépés</button>
-            <hr>
-            <button onclick="register()">Regisztráció</button>
-        `;
-        } else {
-          popup.innerHTML = `
-            <h2>Fiók adatok</h2>
-            <p><strong>Felhasználónév:</strong> demo_user</p>
-            <p><strong>Email:</strong> demo@example.com</p>
-            <hr>
-            <button onclick="logout()">Kijelentkezés</button>
-        `;
-        }
-      }
+      const data = await response.json();
 
-      function login() {
-        // Itt majd backend ellenőrzés lesz
-        loggedIn = true;
-        renderPopup();
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        errorDiv.textContent = data.error || 'Hiba történt a regisztráció során';
+        errorDiv.style.display = 'block';
       }
+    } catch (error) {
+      errorDiv.textContent = 'Hálózati hiba történt';
+      errorDiv.style.display = 'block';
+    }
+  });
+}
 
-      function register() {
-        alert("Itt majd egyszer regisztrálni lehet XD");
-      }
+function showUserProfile() {
+  const userName = loggedInUser.nev;
+  const userEmail = loggedInUser.email;
+  
+  popup.innerHTML = 
+    '<h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Fiók adatok</h2>' +
+    '<div style="font-family: Orbitron, sans-serif; color: #0f0; text-align: left; padding: 20px 0;">' +
+      '<p><strong>Név:</strong> ' + userName + '</p>' +
+      '<p><strong>Email:</strong> ' + userEmail + '</p>' +
+    '</div>' +
+    '<hr style="border-color: #0f0; margin: 20px 0;">' +
+    '<button onclick="logout()" style="padding: 10px; background: #f00; color: #fff; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; font-family: Orbitron, sans-serif;">' +
+      'Kijelentkezés' +
+    '</button>';
+}
 
-      function logout() {
-        loggedIn = false;
-        overlay.style.display = "none";
-      }
+function logout() {
+  window.location.href = '/logout';
+}
     </script>
   </body>
 </html>
