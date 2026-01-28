@@ -122,7 +122,171 @@
         </div>
       </div>
 
-      <div class="keret">
+      <div class="keret" id="keret"></div>
+
+      <div class="keret" id="keret"></div>
+
+      <div class="keret" id="keret"></div>
+
+      <script>
+        // 1️⃣ Minden termék: kép neve és típusa
+        const termekek = [
+          { kep: "2k26.jpg", tipus: "jatek" },
+          { kep: "7 Days to Die.jpg", tipus: "jatek" },
+          { kep: "365personal.jpg", tipus: "license" },
+          { kep: "4500robux.jpg", tipus: "license" },
+          { kep: "acshadows.jpg", tipus: "jatek" },
+          { kep: "adventuretime.jpg", tipus: "jatek" },
+          { kep: "angry birds.jpg", tipus: "jatek" },
+          { kep: "arc raiders.jpg", tipus: "jatek" },
+          { kep: "ark.jpg", tipus: "jatek" },
+          { kep: "assasinscreed.jpg", tipus: "jatek" },
+          { kep: "assetto corsa.jpg", tipus: "jatek" },
+          { kep: "assettocompetij.jpg", tipus: "jatek" },
+          { kep: "avg.jpg", tipus: "szoftver" },
+          { kep: "bf6.jpg", tipus: "jatek" },
+          { kep: "black 4 blood.jpg", tipus: "jatek" },
+          { kep: "borderlands3.jpg", tipus: "jatek" },
+          { kep: "borderlands4.jpg", tipus: "jatek" },
+          { kep: "buckshot.jpg", tipus: "jatek" },
+          { kep: "crew2.jpg", tipus: "jatek" },
+          { kep: "dark souls 3.jpg", tipus: "jatek" },
+          { kep: "days gone.jpg", tipus: "jatek" },
+          { kep: "daysz.jpg", tipus: "jatek" },
+          { kep: "deadbydaylight.jpg", tipus: "jatek" },
+          { kep: "deadpool.jpg", tipus: "jatek" },
+          { kep: "detroit.jpg", tipus: "jatek" },
+          { kep: "devil me.jpg", tipus: "jatek" },
+          { kep: "die young.jpg", tipus: "jatek" },
+          { kep: "dragons dogma.jpg", tipus: "jatek" },
+          { kep: "dying light2.jpg", tipus: "jatek" },
+          { kep: "ets.jpg", tipus: "jatek" },
+          { kep: "f125.jpg", tipus: "jatek" },
+          { kep: "fallout76.jpg", tipus: "jatek" },
+          { kep: "farcry4.jpg", tipus: "jatek" },
+          { kep: "farcry5.jpg", tipus: "jatek" },
+          { kep: "farcry6.jpg", tipus: "jatek" },
+          { kep: "farming simulat.jpg", tipus: "jatek" },
+          { kep: "fc26.jpg", tipus: "jatek" },
+          { kep: "fear.jpg", tipus: "jatek" },
+          { kep: "fifa14.jpg", tipus: "jatek" },
+          { kep: "flstudio.jpg", tipus: "szoftver" },
+          { kep: "fm26.jpg", tipus: "jatek" },
+          { kep: "fractured but w.jpg", tipus: "jatek" },
+          { kep: "gameoftheyears.jpg", tipus: "jatek" },
+          { kep: "gamepass1m.jpg", tipus: "license" },
+          { kep: "gamepass3m.jpg", tipus: "license" },
+          { kep: "gearclub2.jpg", tipus: "jatek" },
+          { kep: "godofwar.jpg", tipus: "jatek" },
+          { kep: "gta4.jpg", tipus: "jatek" },
+          { kep: "gta5.jpg", tipus: "jatek" },
+          { kep: "hitman.jpg", tipus: "jatek" },
+          { kep: "hogwart legacy.jpg", tipus: "jatek" },
+          { kep: "hunt.jpg", tipus: "jatek" },
+          { kep: "icarus.jpg", tipus: "jatek" },
+          { kep: "invincible.jpg", tipus: "jatek" },
+          { kep: "lego lord of ring.jpg", tipus: "jatek" },
+          { kep: "lego ninjago.jpg", tipus: "jatek" },
+          { kep: "lego star wars.jpg", tipus: "jatek" },
+          { kep: "legohobbit.jpg", tipus: "jatek" },
+          { kep: "legojurassic.jpg", tipus: "jatek" },
+          { kep: "legomarvel.jpg", tipus: "jatek" },
+          { kep: "legostarwars.jpg", tipus: "jatek" },
+          { kep: "linux.jpg", tipus: "szoftver" },
+          { kep: "mafiatri.jpg", tipus: "jatek" },
+          { kep: "milemorales.jpg", tipus: "jatek" },
+          { kep: "minecraft java p.jpg", tipus: "jatek" },
+          { kep: "mmazk25.jpg", tipus: "jatek" },
+          { kep: "mortalkombat2.jpg", tipus: "jatek" },
+          { kep: "mortalkombat.jpg", tipus: "jatek" },
+          { kep: "nfl25.jpg", tipus: "jatek" },
+          { kep: "nfs unbound.jpg", tipus: "jatek" },
+          { kep: "nfsheat.jpg", tipus: "jatek" },
+          { kep: "nomansky.jpg", tipus: "jatek" },
+          { kep: "nordvpn.jpg", tipus: "szoftver" },
+          { kep: "office2016.png", tipus: "szoftver" },
+          { kep: "office2019.jpg", tipus: "szoftver" },
+          { kep: "office2021.jpg", tipus: "szoftver" },
+          { kep: "officehome2024.jpg", tipus: "szoftver" },
+          { kep: "officehomebusi.jpg", tipus: "szoftver" },
+          { kep: "outlast.jpg", tipus: "jatek" },
+          { kep: "parallels.jpg", tipus: "szoftver" },
+          { kep: "partyanimals.jpg", tipus: "jatek" },
+        ];
+
+        const keret = document.getElementById("keret");
+
+        termekek.forEach((termek, i) => {
+          const termekDiv = document.createElement("div");
+
+          // Láthatatlan ID és class a típushoz
+          termekDiv.className = `termek ${termek.tipus}`;
+          termekDiv.id = termek.tipus;
+
+          const img = new Image();
+          img.src = `/img/termekek/${termek.kep}`;
+          img.alt = termek.kep.replace(".jpg", "").replace(".png", ""); // Felirat csak a név
+          img.style = `
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      background-color: transparent;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+      border: none;
+      vertical-align: middle;
+      border-radius: 0px;
+    `;
+
+          img.onerror = () => {
+            console.error(`${termek.kep} kép nem jó!`);
+            termekDiv.innerHTML = `<p style="color:red;">${termek.kep} kép nem található!</p>`;
+          };
+
+          img.onload = () => {
+            // Termék neve = fájl neve kiterjesztés nélkül
+            const nev = termek.kep.replace(".jpg", "").replace(".png", "");
+
+            termekDiv.innerHTML = `
+        ${img.outerHTML}
+        <p class="nev">${nev}</p>
+        <button class="hover-anim" style="
+          font-family: Orbitron, sans-serif; 
+          font-weight: bolder; 
+          background-repeat: no-repeat; 
+          width: 30%; 
+          height: 13%; 
+          background-size: 100%; 
+          border: none; 
+          background-color: rgba(46, 173, 46); 
+          border-radius: 10px; 
+          position: relative; 
+          left: -15px; 
+          top: 0px;
+        "> Kosárba🛒 </button>
+        <button class="hover-anim" style="
+          font-family: Orbitron, sans-serif; 
+          font-weight: bolder; 
+          background-repeat: no-repeat; 
+          width: 30%; 
+          height: 13%; 
+          background-size: 100%; 
+          background-color: rgba(46, 173, 46); 
+          border: none; 
+          border-radius: 10px; 
+          position: relative; 
+          left: -5px; 
+          top: 0px;
+        "> Termék Információℹ️ </button>
+      `;
+          };
+
+          keret.appendChild(termekDiv);
+        });
+      </script>
+
+      <!--<div class="keret">
         <div class="termek licensz microsoft szoftver">
           <img src="/img/office.webp" alt="office" class="kepek" />
           <p class="nev">Termék1</p>
@@ -240,9 +404,7 @@
             Termék Információℹ️
           </button>
         </div>
-      </div>
-
-      <div>👤</div>
+      </div> -->
 
       <div class="popup-overlay" id="popupOverlay">
         <div class="popup" id="popupContent"></div>

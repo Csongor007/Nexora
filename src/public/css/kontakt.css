@@ -700,7 +700,7 @@ footer {
 }
 
 .popup {
-  background: rgba(27, 27, 27, 0.4); 
+  background: rgba(27, 27, 27, 0.4);
   backdrop-filter: blur(12px);
   padding: 25px;
   border-radius: 20px;

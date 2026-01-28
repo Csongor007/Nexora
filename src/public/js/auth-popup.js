@@ -31,14 +31,14 @@ function showLoginForm() {
   popup.innerHTML = `
         <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Bejelentkezés</h2>
         <form id="loginForm" style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="email" id="loginEmail" placeholder="Email cím" required style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
-            <input type="password" id="loginPassword" placeholder="Jelszó" required style="padding: 10px; border-radius: 5px; border: 1px solid #0f0; background: #111; color: #0f0; font-family: Orbitron, sans-serif;">
+            <input type="email" id="loginEmail" placeholder="Email cím" required style="padding: 10px; ...">
+            <input type="password" id="loginPassword" placeholder="Jelszó" required style="padding: 10px; ...">
             <div id="loginError" style="color: red; display: none; font-family: Orbitron, sans-serif;"></div>
-            <button type="submit" style="padding: 10px; background: #0f0; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-family: Orbitron, sans-serif;">Belépés</button>
+            <button type="submit" style="..."">Belépés</button>
         </form>
         <hr style="border-color: #0f0; margin: 20px 0;">
         <p style="font-family: Orbitron, sans-serif; color: #0f0;">Még nincs fiókod?</p>
-        <button onclick="showRegisterForm()" style="padding: 10px; background: transparent; color: #0f0; border: 2px solid #0f0; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; font-family: Orbitron, sans-serif;">Regisztráció</button>
+        <button onclick="showRegisterForm()" style="..."">Regisztráció</button>
     `;
 
   document.getElementById("loginForm").addEventListener("submit", async (e) => {
@@ -49,7 +49,7 @@ function showLoginForm() {
         email: document.getElementById("loginEmail").value,
         password: document.getElementById("loginPassword").value,
       },
-      "loginError",
+      "loginError"
     );
   });
 }
@@ -77,7 +77,7 @@ function showRegisterForm() {
         email: encodeURIComponent(document.getElementById("registerEmail").value),
         password: document.getElementById("registerPassword").value,
       },
-      "registerError",
+      "registerError"
     );
   });
 }

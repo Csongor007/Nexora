@@ -5,7 +5,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/kontakt.css" type="text/css" />
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Nexora Hivatalos Weboldala" />
@@ -13,22 +12,18 @@
     <link rel="icon" type="image/ico" href="/img/icons/nexora_logo_tp.png" />
     <link rel="stylesheet" href="/css/transition.css" />
     <script src="/js/transitions.js"></script>
-    <title>Projekt</title>
-
+    <title>Kapcsolat - Nexora</title>
     <div class="box">
       <div class="wave -one"></div>
       <div class="wave -two"></div>
       <div class="wave -three"></div>
     </div>
-
     <div class="background"></div>
-
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="/js/ui-effects.js" defer></script>
   </head>
   <body>
     <div id="particle-background"></div>
-
     <div class="transition transition-1 is-active"></div>
     <header>
       <button class="menu-toggle">☰</button>
@@ -62,49 +57,53 @@
       <div class="container">
         <form id="contactForm">
           <label for="name">Név</label>
-          <input type="text" id="name" name="name" placeholder="Név..." required />
-
+          <input type="text" id="name" name="name" placeholder="Név..." maxlength="50" required />
           <label for="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
             placeholder="E-mail címed"
+            maxlength="50"
             required
             title="Kérjük, érvényes email címet adj meg (pl. valami@domain.hu)" />
-
           <label for="subject">Megjegyzés</label>
           <textarea
             id="subject"
             name="subject"
-            placeholder="Megosztani kívánt információid (max. 300 karakter)"
+            placeholder="Megosztani kívánt információid"
             style="height: 200px"
             maxlength="300"
             required></textarea>
-
+          <div
+            id="charCounter"
+            style="text-align: right; color: #0f0; font-family: Orbitron, sans-serif; font-size: 12px; margin-top: 5px">
+            0 / 300 karakter
+          </div>
           <input type="submit" value="Küldés" />
         </form>
       </div>
-
       <div style="height: 0px"></div>
     </main>
 
+    <!-- Popup háttér - User fiók -->
     <div class="popup-overlay" id="popupOverlay">
       <div class="popup" id="popupContent"></div>
     </div>
 
     <footer>
       <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
-
       <script>
         document.getElementById("year").textContent = new Date().getFullYear();
       </script>
     </footer>
 
+    <!-- User adat átadása -->
     <script>
-      window.loggedInUser = <%- (typeof user !== 'undefined' && user) ? JSON.stringify(user) : 'null' %>;
+      window.loggedInUser = <%- user ? JSON.stringify(user) : 'null' %>;
     </script>
 
+    <!-- Scripts -->
     <script src="/js/contact-handler.js" defer></script>
     <script src="/js/auth-popup.js" defer></script>
   </body>

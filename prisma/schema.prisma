@@ -93,3 +93,11 @@ model termekek {
 
   @@index([kategoria_id], map: "FK_termekek_kategoriak")
 }
+
+model kapcsolatfelvetel {
+  id     Int      @id @default(autoincrement()) @db.UnsignedInt
+  Nev    String   @db.VarChar(50)
+  Email  String   @db.VarChar(50)
+  Uzenet String   @db.Text
+  Kuldve DateTime @default(now()) @db.Timestamp(0)
+}

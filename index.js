@@ -25,7 +25,7 @@ app.use(
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     },
-  }),
+  })
 );
 
 // View engine
@@ -54,7 +54,6 @@ app.get("/webshop", (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const { email, password, nev } = req.body;
-    const decodedEmail = decodeURIComponent(email);
 
     // Validáció
     if (!email || !password || !nev) {
@@ -73,7 +72,7 @@ app.post("/register", async (req, res) => {
 
     // Ellenőrizzük, hogy az email már létezik-e
     const existingUser = await DB.felhasznalok.findFirst({
-      where: { email: decodedEmail },
+      where: { email },
     });
 
     if (existingUser) {
@@ -89,7 +88,7 @@ app.post("/register", async (req, res) => {
     // Felhasználó létrehozása
     const newUser = await DB.felhasznalok.create({
       data: {
-        email: decodedEmail,
+        email,
         jelszo_hash,
         nev,
       },
@@ -190,6 +189,37 @@ app.get("/logout", (req, res) => {
     // Visszairányítás arra az oldalra, ahonnan jött
     res.redirect(returnUrl);
   });
+});
+
+// Kapcsolatfelvétel POST
+app.post("/contact", async (req, res) => {
+  try {
+    const { name, email, subject } = req.body;
+
+    // Validáció
+    if (!name || !email || !subject) {
+      return res.status(400).json({ error: "Minden mező kitöltése kötelező!" });
+    }
+
+    // Kapcsolatfelvétel mentése az adatbázisba
+    await DB.kapcsolatfelvetel.create({
+      data: {
+        Nev: name,
+        Email: email,
+        Uzenet: subject,
+      },
+    });
+
+    console.log("✅ Új kapcsolatfelvétel mentve!");
+
+    return res.json({
+      success: true,
+      message: "Köszönjük az üzeneted! Hamarosan válaszolunk.",
+    });
+  } catch (error) {
+    console.error("Kapcsolatfelvétel hiba:", error);
+    return res.status(500).json({ error: "Hiba történt az üzenet küldése során!" });
+  }
 });
 
 app.get("/aszf", (req, res) => {
