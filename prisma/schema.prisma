@@ -41,7 +41,7 @@ model kategoriak {
 }
 
 model rendeles_tetel {
-  id          Int     @id @db.UnsignedInt
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
   rendeles_id Int     @db.UnsignedInt
   termek_id   Int     @db.UnsignedInt
   mennyiseg   Int     @db.UnsignedInt
@@ -52,7 +52,7 @@ model rendeles_tetel {
 }
 
 model rendelesek {
-  id             Int      @id @db.UnsignedInt
+  id             Int      @id @default(autoincrement()) @db.UnsignedInt
   felhasznalo_id Int      @db.UnsignedInt
   vegosszeg      Decimal  @db.Decimal(10, 2)
   allapot        String   @db.VarChar(50)
@@ -62,7 +62,7 @@ model rendelesek {
 }
 
 model szallitas {
-  id           Int    @id @db.UnsignedInt
+  id           Int    @id @default(autoincrement()) @db.UnsignedInt
   rendeles_id  Int    @db.UnsignedInt
   vezeteknev   String @db.VarChar(50)
   keresztnev   String @db.VarChar(50)
@@ -85,19 +85,32 @@ model szoftverek {
 }
 
 model termekek {
-  id           Int      @id @default(autoincrement()) @db.UnsignedInt
-  nev          String   @db.VarChar(50)
-  ar           Decimal  @db.Decimal(10, 2)
-  kategoria_id Int      @db.UnsignedInt
-  feltoltve    DateTime @db.Timestamp(0)
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  nev         String   @db.VarChar(50)
+  ar          Decimal  @db.Decimal(10, 2)
 
-  @@index([kategoria_id], map: "FK_termekek_kategoriak")
+  kategoria   String   @db.VarChar(50)
+
+  keszlet     Int      @default(0) @db.UnsignedInt
+  kepformatum String   @db.Text
+}
+
+
+model aktivaciokulcsok {
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt
+  termek_id Int      @db.UnsignedInt
+  kulcs     String   @unique @db.VarChar(255)
+  eladva    Boolean  @default(false)
+  eladva_at DateTime?
+
+  @@index([termek_id])
 }
 
 model kapcsolatfelvetel {
-  id     Int      @id @default(autoincrement()) @db.UnsignedInt
-  Nev    String   @db.VarChar(50)
-  Email  String   @db.VarChar(50)
-  Uzenet String   @db.Text
+  id     Int    @id @default(autoincrement()) @db.UnsignedInt
+  Nev    String @db.VarChar(50)
+  Email  String @db.VarChar(50)
+  Uzenet String @db.Text
   Kuldve DateTime @default(now()) @db.Timestamp(0)
 }
+

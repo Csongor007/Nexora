@@ -92,11 +92,24 @@
     </div>
 
     <footer>
-      <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
-      <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-      </script>
-    </footer>
+  <div class="footer-content">
+    <a href="/"><p style="font-size: large; text-decoration: underline;"><strong>Nexora</strong> – Webshop</p></a>
+    <p style="font-size: larger;">Székhely: 1234 Budapest, Példa utca 12.</p>
+    <p style="font-size: larger;">Adószám: 12345678-1-12 | Cégjegyzékszám: 01-09-123456</p>
+    <p style="font-size: larger;">Kapcsolat: support@nexora.hu | +36 30 123 4567</p>
+
+    <p>
+      <a href="/aszf" style="color:#0f0; text-decoration:none;">ÁSZF & GYIK</a>
+    </p>
+
+    <p style="font-size: larger;">&copy; <span id="year" ></span> Nexora. All rights reserved</p>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</footer>
+
 
     <!-- User adat átadása -->
     <script>
