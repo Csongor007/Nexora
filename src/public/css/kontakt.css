@@ -709,12 +709,12 @@ footer {
   backdrop-filter: blur(6px);
   display: none;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
   inset: 0;
 }
 
 .popup {
-  background: rgba(27, 27, 27, 0.4);
+  background: rgba(27, 27, 27, 0.4); 
   backdrop-filter: blur(12px);
   padding: 25px;
   border-radius: 20px;
