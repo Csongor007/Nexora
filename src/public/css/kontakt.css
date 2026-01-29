@@ -594,6 +594,7 @@ footer {
   z-index: 1001;
 }
 
+
 @media (max-width: 1280px) {
   main {
     margin: 0;
@@ -709,6 +710,7 @@ footer {
   display: none;
   justify-content: center;
   align-items: center;
+  inset: 0;
 }
 
 .popup {
@@ -764,3 +766,4 @@ footer {
 p {
   color: #ccc;
 }
+

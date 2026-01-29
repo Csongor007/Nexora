@@ -1,7 +1,7 @@
 [
   { "nev": "2k26", "kategoria": "jatek", "ar": 11990, "kepformatum": "2k26.jpg", "info": "Ez a játék egy izgalmas sport szimulátor, ahol a focivilág legjobbjaival mérkőzhetsz." },
   { "nev": "7 Days to Die", "kategoria": "jatek", "ar": 8990, "kepformatum": "7 Days to Die.jpg", "info": "Egy zombis túlélő játék, ahol építhetsz, harcolhatsz és felfedezhetsz." },
-  { "nev": "365personal", "kategoria": "license", "ar": 1490, "kepformatum": "365personal.jpg", "info": "Microsoft 365 személyes licensz, Office alkalmazásokkal és felhő tárhellyel." },
+  { "nev": "365personal", "kategoria": "license microsoft", "ar": 1490, "kepformatum": "365personal.jpg", "info": "Microsoft 365 személyes licensz, Office alkalmazásokkal és felhő tárhellyel." },
   { "nev": "4500robux", "kategoria": "giftcard", "ar": 1290, "kepformatum": "4500robux.jpg", "info": "4500 Robux virtuális pénz a Roblox játékhoz." },
   { "nev": "acshadows", "kategoria": "jatek", "ar": 7990, "kepformatum": "acshadows.jpg", "info": "Egy akció-kaland játék lenyűgöző grafikával és történettel." },
   { "nev": "adventuretime", "kategoria": "jatek", "ar": 6990, "kepformatum": "adventuretime.jpg", "info": "Éld át a Kaland idő világát interaktív játékban." },
@@ -11,7 +11,7 @@
   { "nev": "assasinscreed", "kategoria": "jatek", "ar": 10990, "kepformatum": "assasinscreed.jpg", "info": "Izgalmas történelmi akciójáték titkos társaságokkal." },
   { "nev": "assetto corsa", "kategoria": "jatek", "ar": 8990, "kepformatum": "assetto corsa.jpg", "info": "Realista autóverseny szimulátor, versenyautókkal és pályákkal." },
   { "nev": "assettocompetij", "kategoria": "jatek", "ar": 9990, "kepformatum": "assettocompetij.jpg", "info": "Versenyszimulátor, profi vezetési élménnyel." },
-  { "nev": "avg", "kategoria": "szoftver", "ar": 5990, "kepformatum": "avg.jpg", "info": "AVG antivírus szoftver, védelem a számítógépednek." },
+  { "nev": "avg", "kategoria": "szoftver avg", "ar": 5990, "kepformatum": "avg.jpg", "info": "AVG antivírus szoftver, védelem a számítógépednek." },
   { "nev": "bf6", "kategoria": "jatek", "ar": 12990, "kepformatum": "bf6.jpg", "info": "Népszerű lövöldözős játék valósághű terekkel és fegyverekkel." },
   { "nev": "black 4 blood", "kategoria": "jatek", "ar": 11990, "kepformatum": "black 4 blood.jpg", "info": "Kooperatív zombis akciójáték, intenzív harcokkal." },
   { "nev": "borderlands3", "kategoria": "jatek", "ar": 10990, "kepformatum": "borderlands3.jpg", "info": "Humoros FPS játék gazdag történettel és loot-tal." },
@@ -42,8 +42,8 @@
   { "nev": "fm26", "kategoria": "jatek", "ar": 6990, "kepformatum": "fm26.jpg", "info": "Football Manager 2026 – menedzser szimulátor." },
   { "nev": "fractured but w", "kategoria": "jatek", "ar": 8990, "kepformatum": "fractured but w.jpg", "info": "Sci-fi RPG, felfedezés és taktikai harcok." },
   { "nev": "gameoftheyears", "kategoria": "jatek", "ar": 10990, "kepformatum": "gameoftheyears.jpg", "info": "Legjobb játékok gyűjteménye, tartalmaz DLC-ket is." },
-  { "nev": "gamepass1m", "kategoria": "giftcard", "ar": 1490, "kepformatum": "gamepass1m.jpg", "info": "1 hónapos Xbox Game Pass előfizetés." },
-  { "nev": "gamepass3m", "kategoria": "giftcard", "ar": 3990, "kepformatum": "gamepass3m.jpg", "info": "3 hónapos Xbox Game Pass előfizetés." },
+  { "nev": "gamepass1m", "kategoria": "giftcard microsoft", "ar": 1490, "kepformatum": "gamepass1m.jpg", "info": "1 hónapos Xbox Game Pass előfizetés." },
+  { "nev": "gamepass3m", "kategoria": "giftcard microsoft", "ar": 3990, "kepformatum": "gamepass3m.jpg", "info": "3 hónapos Xbox Game Pass előfizetés." },
   { "nev": "gearclub2", "kategoria": "jatek", "ar": 6990, "kepformatum": "gearclub2.jpg", "info": "Autós verseny szimulátor nyílt világban." },
   { "nev": "godofwar", "kategoria": "jatek", "ar": 12990, "kepformatum": "godofwar.jpg", "info": "Mitológiai akciójáték Kratossal." },
   { "nev": "gta4", "kategoria": "jatek", "ar": 4990, "kepformatum": "gta4.jpg", "info": "Nyílt világú akció-kaland játék." },
@@ -60,6 +60,6 @@
   { "nev": "legojurassic", "kategoria": "jatek", "ar": 6990, "kepformatum": "legojurassic.jpg", "info": "LEGO Jurassic Park játék dinoszauruszokkal." },
   { "nev": "legomarvel", "kategoria": "jatek", "ar": 8990, "kepformatum": "legomarvel.jpg", "info": "LEGO Marvel játék, szuperhős kalandokkal." },
   { "nev": "legostarwars", "kategoria": "jatek", "ar": 9990, "kepformatum": "legostarwars.jpg", "info": "LEGO Star Wars játék, csillagháborús élménnyel." },
-  { "nev": "linux", "kategoria": "szoftver", "ar": 4990, "kepformatum": "linux.jpg", "info": "Linux operációs rendszer, stabil és nyílt forráskódú." }
+  { "nev": "linux", "kategoria": "szoftver linux", "ar": 4990, "kepformatum": "linux.jpg", "info": "Linux operációs rendszer, stabil és nyílt forráskódú." }
 
 ]
