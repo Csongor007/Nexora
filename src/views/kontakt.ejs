@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Nexora Hivatalos Weboldala" />
@@ -20,14 +20,14 @@
     <script src="/js/ui-effects.js" defer></script>
 
     <title>Kapcsolat - Nexora</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- HÁTTÉR ELEMEK – ÁTHELYEZVE A BODY-BE -->
     <div class="box">
-        <div class="wave -one"></div>
-        <div class="wave -two"></div>
-        <div class="wave -three"></div>
+      <div class="wave -one"></div>
+      <div class="wave -two"></div>
+      <div class="wave -three"></div>
     </div>
 
     <div class="background"></div>
@@ -36,83 +36,106 @@
 
     <!-- HEADER -->
     <header>
-        <button class="menu-toggle">☰</button>
+      <button class="menu-toggle">☰</button>
 
-        <nav class="left">
-            <ul class="nav-menu">
-                <li><a href="/webshop"><img src="/img/icons/bags-shopping.webp" alt="Webshop" /></a></li>
-                <li><a href="/aszf"><img src="/img/icons/terms-info.webp" alt="ÁSZF" /></a></li>
-            </ul>
-        </nav>
+      <nav class="left">
+        <ul class="nav-menu">
+          <li>
+            <a href="/webshop"><img src="/img/icons/bags-shopping.webp" alt="Webshop" /></a>
+          </li>
+          <li>
+            <a href="/aszf"><img src="/img/icons/terms-info.webp" alt="ÁSZF" /></a>
+          </li>
+        </ul>
+      </nav>
 
-        <div class="logo">
-            <a href="/"><img src="/img/icons/nexora_logo_tp.webp" alt="Logo" /></a>
-        </div>
+      <div class="logo">
+        <a href="/"><img src="/img/icons/nexora_logo_tp.webp" alt="Logo" /></a>
+      </div>
 
-        <nav class="right">
-            <ul class="nav-menu2">
-                <li><a href="/kontakt"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a></li>
-                <li>
-                    <a href="#" title="Bejelentkezés">
-                        <img src="/img/icons/profile.webp" alt="Bejelentkezés" class="floating-btn" id="floatingBtn" />
-                    </a>
-                </li>
-            </ul>
-        </nav>
+      <nav class="right">
+        <ul class="nav-menu2">
+          <li>
+            <a href="/kontakt"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a>
+          </li>
+          <li>
+            <a href="#" title="Bejelentkezés">
+              <img src="/img/icons/profile.webp" alt="Bejelentkezés" class="floating-btn" id="floatingBtn" />
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- MAIN -->
     <main style="z-index: 1">
-        <div class="container">
-            <form id="contactForm">
-                <label for="name">Név</label>
-                <input type="text" id="name" name="name" placeholder="Név..." maxlength="50" required />
+      <div class="container">
+        <form id="contactForm">
+          <label for="name">Név</label>
+          <input type="text" id="name" name="name" placeholder="Név..." maxlength="50" required />
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="E-mail címed" maxlength="50" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="E-mail címed" maxlength="50" required />
 
-                <label for="subject">Megjegyzés</label>
-                <textarea id="subject" name="subject" placeholder="Megosztani kívánt információid" style="height:200px" maxlength="300" required></textarea>
+          <label for="subject">Megjegyzés</label>
+          <textarea
+            id="subject"
+            name="subject"
+            placeholder="Megosztani kívánt információid"
+            style="height: 200px"
+            maxlength="300"
+            required></textarea>
 
-                <div id="charCounter" style="text-align:right; color:#0f0; font-family:Orbitron; font-size:12px; margin-top:5px;">
-                    0 / 300 karakter
-                </div>
+          <div
+            id="charCounter"
+            style="
+              text-align: right;
+              color: #0f0;
+              font-family: Orbitron;
+              font-size: 12px;
+              margin-top: 5px;
+              margin-bottom: 15px;
+            ">
+            0 / 300 karakter
+          </div>
 
-                <input type="submit" value="Küldés" />
-            </form>
-        </div>
+          <input type="submit" value="Küldés" />
+        </form>
+      </div>
     </main>
 
     <!-- POPUP OVERLAY -->
     <div class="popup-overlay" id="popupOverlay">
-        <div class="popup" id="popupContent"></div>
+      <div class="popup" id="popupContent"></div>
     </div>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <a href="/"><p style="font-size: large; text-decoration: underline;"><strong>Nexora</strong> – Webshop</p></a>
-            <p style="font-size: larger;">Székhely: 1234 Budapest, Példa utca 12.</p>
-            <p style="font-size: larger;">Adószám: 12345678-1-12 | Cégjegyzékszám: 01-09-123456</p>
-            <p style="font-size: larger;">Kapcsolat: support@nexora.hu | +36 30 123 4567</p>
+      <div class="footer-content">
+        <a href="/"
+          ><p style="font-size: large; text-decoration: underline"><strong>Nexora</strong> – Webshop</p></a
+        >
+        <p style="font-size: larger">Székhely: 1234 Budapest, Példa utca 12.</p>
+        <p style="font-size: larger">Adószám: 12345678-1-12 | Cégjegyzékszám: 01-09-123456</p>
+        <p style="font-size: larger">Kapcsolat: support@nexora.hu | +36 30 123 4567</p>
 
-            <p><a href="/aszf" style="color:#0f0; text-decoration:none;">ÁSZF & GYIK</a></p>
+        <p><a href="/aszf" style="color: #0f0; text-decoration: none">ÁSZF & GYIK</a></p>
 
-            <p style="font-size: larger;">&copy; <span id="year"></span> Nexora. All rights reserved</p>
-        </div>
+        <p style="font-size: larger">&copy; <span id="year"></span> Nexora. All rights reserved</p>
+      </div>
 
-        <script>
-            document.getElementById("year").textContent = new Date().getFullYear();
-        </script>
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
     </footer>
 
     <!-- USER ADAT ÁTADÁSA -->
     <script>
-        window.loggedInUser = <%- user ? JSON.stringify(user) : 'null' %>;
+      window.loggedInUser = <%- user ? JSON.stringify(user) : 'null' %>;
     </script>
 
     <!-- SCRIPTS -->
     <script src="/js/contact-handler.js" defer></script>
     <script src="/js/auth-popup.js" defer></script>
-</body>
+  </body>
 </html>
