@@ -90,7 +90,7 @@
           Márka:
         </h2>
 
-        <button style="position: relative; top: -80px; left: 165px" onclick="filterByCategory('termek')" class="tags">
+        <button style="position: relative; top: -80px; left: 165px" onclick="filterByCategory('termek'), document.getElementById('search').value = ''" class="tags">
           Összes
         </button>
 
@@ -249,6 +249,8 @@ fetch("img/termekbazis/termek.json")
       <div style="height: 100px"></div>
     </main>
 
+    <div class="visszanyil" id="Visszanyil" style="z-index: 10;">▲</div>
+
     <footer>
       <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
 
@@ -266,4 +268,6 @@ fetch("img/termekbazis/termek.json")
     <script src="/js/filters.js"></script>
     <script src="/js/auth-popup.js"></script>
   </body>
+  
 </html>
+

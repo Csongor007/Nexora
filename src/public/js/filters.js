@@ -23,3 +23,11 @@ function filterSearch() {
         }
     });
 }
+
+document.getElementById("Visszanyil").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
