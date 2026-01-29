@@ -85,32 +85,28 @@ model szoftverek {
 }
 
 model termekek {
-  id          Int      @id @default(autoincrement()) @db.UnsignedInt
-  nev         String   @db.VarChar(50)
-  ar          Decimal  @db.Decimal(10, 2)
-
-  kategoria   String   @db.VarChar(50)
-
-  keszlet     Int      @default(0) @db.UnsignedInt
-  kepformatum String   @db.Text
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  nev         String  @db.VarChar(50)
+  ar          Decimal @db.Decimal(10, 2)
+  kategoria   String  @db.VarChar(50)
+  kepformatum String  @db.Text
+  keszlet     Int     @default(0) @db.UnsignedInt
 }
 
-
 model aktivaciokulcsok {
-  id        Int      @id @default(autoincrement()) @db.UnsignedInt
-  termek_id Int      @db.UnsignedInt
-  kulcs     String   @unique @db.VarChar(255)
-  eladva    Boolean  @default(false)
+  id        Int       @id @default(autoincrement()) @db.UnsignedInt
+  termek_id Int       @db.UnsignedInt
+  kulcs     String    @unique @db.VarChar(255)
+  eladva    Boolean   @default(false)
   eladva_at DateTime?
 
   @@index([termek_id])
 }
 
 model kapcsolatfelvetel {
-  id     Int    @id @default(autoincrement()) @db.UnsignedInt
-  Nev    String @db.VarChar(50)
-  Email  String @db.VarChar(50)
-  Uzenet String @db.Text
+  id     Int      @id @default(autoincrement()) @db.UnsignedInt
+  Nev    String   @db.VarChar(50)
+  Email  String   @db.VarChar(50)
+  Uzenet String   @db.Text
   Kuldve DateTime @default(now()) @db.Timestamp(0)
 }
-

@@ -25,7 +25,7 @@ app.use(
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     },
-  })
+  }),
 );
 
 // View engine
@@ -53,7 +53,10 @@ app.get("/webshop", (req, res) => {
 // Register POST - JSON és form support
 app.post("/register", async (req, res) => {
   try {
-    const { email, password, nev } = req.body;
+    let { email, password, nev } = req.body;
+
+    // Dekódoljuk az emailt ha URL-encodolt
+    email = decodeURIComponent(email);
 
     // Validáció
     if (!email || !password || !nev) {
@@ -121,7 +124,10 @@ app.post("/register", async (req, res) => {
 // Login POST - JSON és form support
 app.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+
+    // Dekódoljuk az emailt ha URL-encodolt
+    email = decodeURIComponent(email);
 
     // Validáció
     if (!email || !password) {
@@ -194,7 +200,10 @@ app.get("/logout", (req, res) => {
 // Kapcsolatfelvétel POST
 app.post("/contact", async (req, res) => {
   try {
-    const { name, email, subject } = req.body;
+    let { name, email, subject } = req.body;
+
+    // Dekódoljuk az emailt ha URL-encodolt
+    email = decodeURIComponent(email);
 
     // Validáció
     if (!name || !email || !subject) {
