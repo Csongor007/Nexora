@@ -224,7 +224,7 @@ fetch("img/termekbazis/termek.json")
     <h2 style="margin-bottom:10px; color: #ccc;">${termek.nev}</h2>
     <p style="font-weight:bold; color:#2ead2e;">Kategória: ${termek.kategoria}</p>
     <p style="font-weight:bold;">Ár: ${termek.ar.toLocaleString()} Ft</p>
-    <p style="margin-top:10px;">${termek.info}</p> <!-- ide jön az új info mező -->
+    <p style="margin-top:10px;">${termek.info.replaceAll(".",".<br>")}</p> <!-- ide jön az új info mező -->
   `;
 
   modal.querySelector("button").addEventListener("click", () => {

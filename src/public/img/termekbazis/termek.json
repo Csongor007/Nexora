@@ -1,65 +1,268 @@
 [
-  { "nev": "2k26", "kategoria": "jatek", "ar": 11990, "kepformatum": "2k26.jpg", "info": "Ez a játék egy izgalmas sport szimulátor, ahol a focivilág legjobbjaival mérkőzhetsz." },
-  { "nev": "7 Days to Die", "kategoria": "jatek", "ar": 8990, "kepformatum": "7 Days to Die.jpg", "info": "Egy zombis túlélő játék, ahol építhetsz, harcolhatsz és felfedezhetsz." },
-  { "nev": "365personal", "kategoria": "license microsoft", "ar": 1490, "kepformatum": "365personal.jpg", "info": "Microsoft 365 személyes licensz, Office alkalmazásokkal és felhő tárhellyel." },
-  { "nev": "4500robux", "kategoria": "giftcard", "ar": 1290, "kepformatum": "4500robux.jpg", "info": "4500 Robux virtuális pénz a Roblox játékhoz." },
-  { "nev": "acshadows", "kategoria": "jatek", "ar": 7990, "kepformatum": "acshadows.jpg", "info": "Egy akció-kaland játék lenyűgöző grafikával és történettel." },
-  { "nev": "adventuretime", "kategoria": "jatek", "ar": 6990, "kepformatum": "adventuretime.jpg", "info": "Éld át a Kaland idő világát interaktív játékban." },
-  { "nev": "angry birds", "kategoria": "jatek", "ar": 3990, "kepformatum": "angry birds.jpg", "info": "Klasszikus puzzle játék madarakkal, akik ellenállhatatlanek a gonosz malacok ellen." },
-  { "nev": "arc raiders", "kategoria": "jatek", "ar": 6990, "kepformatum": "arc raiders.jpg", "info": "Sci-fi akció játék, ahol csapatban kell megmentened a világot." },
-  { "nev": "ark", "kategoria": "jatek", "ar": 12990, "kepformatum": "ark.jpg", "info": "Nyílt világú dinoszaurusz túlélő játék, felfedezéssel és építkezéssel." },
-  { "nev": "assasinscreed", "kategoria": "jatek", "ar": 10990, "kepformatum": "assasinscreed.jpg", "info": "Izgalmas történelmi akciójáték titkos társaságokkal." },
-  { "nev": "assetto corsa", "kategoria": "jatek", "ar": 8990, "kepformatum": "assetto corsa.jpg", "info": "Realista autóverseny szimulátor, versenyautókkal és pályákkal." },
-  { "nev": "assettocompetij", "kategoria": "jatek", "ar": 9990, "kepformatum": "assettocompetij.jpg", "info": "Versenyszimulátor, profi vezetési élménnyel." },
-  { "nev": "avg", "kategoria": "szoftver avg", "ar": 5990, "kepformatum": "avg.jpg", "info": "AVG antivírus szoftver, védelem a számítógépednek." },
-  { "nev": "bf6", "kategoria": "jatek", "ar": 12990, "kepformatum": "bf6.jpg", "info": "Népszerű lövöldözős játék valósághű terekkel és fegyverekkel." },
-  { "nev": "black 4 blood", "kategoria": "jatek", "ar": 11990, "kepformatum": "black 4 blood.jpg", "info": "Kooperatív zombis akciójáték, intenzív harcokkal." },
-  { "nev": "borderlands3", "kategoria": "jatek", "ar": 10990, "kepformatum": "borderlands3.jpg", "info": "Humoros FPS játék gazdag történettel és loot-tal." },
-  { "nev": "borderlands4", "kategoria": "jatek", "ar": 12990, "kepformatum": "borderlands4.jpg", "info": "Folytatás az akciódús, loot-alapú FPS sorozatban." },
-  { "nev": "buckshot", "kategoria": "jatek", "ar": 4990, "kepformatum": "buckshot.jpg", "info": "Izgalmas lövöldözős játék különböző pályákkal." },
-  { "nev": "crew2", "kategoria": "jatek", "ar": 6990, "kepformatum": "crew2.jpg", "info": "Autós verseny szimulátor, többféle járművel és nyílt világban." },
-  { "nev": "dark souls 3", "kategoria": "jatek", "ar": 7990, "kepformatum": "dark souls 3.jpg", "info": "Nehezebb akció RPG, kihívást jelentő harcokkal és boss-okkal." },
-  { "nev": "days gone", "kategoria": "jatek", "ar": 8990, "kepformatum": "days gone.jpg", "info": "Zombis túlélő akciójáték nyílt világban." },
-  { "nev": "daysz", "kategoria": "jatek", "ar": 6990, "kepformatum": "daysz.jpg", "info": "Kaland- és túlélő játék izgalmas küldetésekkel." },
-  { "nev": "deadbydaylight", "kategoria": "jatek", "ar": 7990, "kepformatum": "deadbydaylight.jpg", "info": "Multiplayer horror játék, túlélők és gyilkos harcai." },
-  { "nev": "deadpool", "kategoria": "jatek", "ar": 6990, "kepformatum": "deadpool.jpg", "info": "Humoros akciójáték a híres képregényhőssel." },
-  { "nev": "detroit", "kategoria": "jatek", "ar": 10990, "kepformatum": "detroit.jpg", "info": "Interaktív történet alapú játék, döntéseid befolyásolják a cselekményt." },
-  { "nev": "devil me", "kategoria": "jatek", "ar": 4990, "kepformatum": "devil me.jpg", "info": "Akció-kaland játék démoni ellenfelekkel." },
-  { "nev": "die young", "kategoria": "jatek", "ar": 3990, "kepformatum": "die young.jpg", "info": "Túlélő-kaland játék izgalmas történettel." },
-  { "nev": "dragons dogma", "kategoria": "jatek", "ar": 6990, "kepformatum": "dragons dogma.jpg", "info": "Akció RPG sárkányokkal és nyílt világ felfedezéssel." },
-  { "nev": "dying light2", "kategoria": "jatek", "ar": 11990, "kepformatum": "dying light2.jpg", "info": "Zombis parkour túlélő játék intenzív harcokkal." },
-  { "nev": "ets", "kategoria": "jatek", "ar": 4990, "kepformatum": "ets.jpg", "info": "Euro Truck Simulator – kamionozás és szállítmányozás szimulátor." },
-  { "nev": "f125", "kategoria": "jatek", "ar": 9990, "kepformatum": "f125.jpg", "info": "F1 verseny szimulátor profi pályákkal és autókkal." },
-  { "nev": "fallout76", "kategoria": "jatek", "ar": 10990, "kepformatum": "fallout76.jpg", "info": "Posztapokaliptikus RPG online multiplayer élménnyel." },
-  { "nev": "farcry4", "kategoria": "jatek", "ar": 7990, "kepformatum": "farcry4.jpg", "info": "Akció-kaland játék nyílt világban, izgalmas küldetésekkel." },
-  { "nev": "farcry5", "kategoria": "jatek", "ar": 8990, "kepformatum": "farcry5.jpg", "info": "Fedezd fel a Hope County világát és harcolj a fanatikusok ellen." },
-  { "nev": "farcry6", "kategoria": "jatek", "ar": 12990, "kepformatum": "farcry6.jpg", "info": "Nyílt világú akciójáték forradalmi történettel." },
-  { "nev": "farming simulat", "kategoria": "jatek", "ar": 6990, "kepformatum": "farming simulat.jpg", "info": "Farm szimulátor – gazdálkodj, takaríts, építs farmot." },
-  { "nev": "fc26", "kategoria": "jatek", "ar": 5990, "kepformatum": "fc26.jpg", "info": "Football Manager 2026 – menedzselj profi csapatot." },
-  { "nev": "fear", "kategoria": "jatek", "ar": 4990, "kepformatum": "fear.jpg", "info": "FPS horror játék ijesztő ellenségekkel és történettel." },
-  { "nev": "fifa14", "kategoria": "jatek", "ar": 3990, "kepformatum": "fifa14.jpg", "info": "FIFA 14 – klasszikus focijáték különböző csapatokkal." },
-  { "nev": "flstudio", "kategoria": "szoftver", "ar": 12990, "kepformatum": "flstudio.jpg", "info": "FL Studio zenei szoftver, zeneszerkesztéshez és producerkedéshez." },
-  { "nev": "fm26", "kategoria": "jatek", "ar": 6990, "kepformatum": "fm26.jpg", "info": "Football Manager 2026 – menedzser szimulátor." },
-  { "nev": "fractured but w", "kategoria": "jatek", "ar": 8990, "kepformatum": "fractured but w.jpg", "info": "Sci-fi RPG, felfedezés és taktikai harcok." },
-  { "nev": "gameoftheyears", "kategoria": "jatek", "ar": 10990, "kepformatum": "gameoftheyears.jpg", "info": "Legjobb játékok gyűjteménye, tartalmaz DLC-ket is." },
-  { "nev": "gamepass1m", "kategoria": "giftcard microsoft", "ar": 1490, "kepformatum": "gamepass1m.jpg", "info": "1 hónapos Xbox Game Pass előfizetés." },
-  { "nev": "gamepass3m", "kategoria": "giftcard microsoft", "ar": 3990, "kepformatum": "gamepass3m.jpg", "info": "3 hónapos Xbox Game Pass előfizetés." },
-  { "nev": "gearclub2", "kategoria": "jatek", "ar": 6990, "kepformatum": "gearclub2.jpg", "info": "Autós verseny szimulátor nyílt világban." },
-  { "nev": "godofwar", "kategoria": "jatek", "ar": 12990, "kepformatum": "godofwar.jpg", "info": "Mitológiai akciójáték Kratossal." },
-  { "nev": "gta4", "kategoria": "jatek", "ar": 4990, "kepformatum": "gta4.jpg", "info": "Nyílt világú akció-kaland játék." },
-  { "nev": "gta5", "kategoria": "jatek", "ar": 9990, "kepformatum": "gta5.jpg", "info": "GTA sorozat 5. része, nyílt világ, küldetések és multiplayer." },
-  { "nev": "hitman", "kategoria": "jatek", "ar": 8990, "kepformatum": "hitman.jpg", "info": "Stealth akció játék, profi bérgyilkos szerepben." },
-  { "nev": "hogwart legacy", "kategoria": "jatek", "ar": 10990, "kepformatum": "hogwart legacy.jpg", "info": "Harry Potter univerzum RPG, varázslatos kalandokkal." },
-  { "nev": "hunt", "kategoria": "jatek", "ar": 6990, "kepformatum": "hunt.jpg", "info": "Túlélő és vadász szimulátor nyílt világban." },
-  { "nev": "icarus", "kategoria": "jatek", "ar": 8990, "kepformatum": "icarus.jpg", "info": "Sci-fi túlélő játék veszélyes környezetben." },
-  { "nev": "invincible", "kategoria": "jatek", "ar": 3990, "kepformatum": "invincible.jpg", "info": "Akció játék szuperhős témában." },
-  { "nev": "lego lord of ring", "kategoria": "jatek", "ar": 6990, "kepformatum": "lego lord of ring.jpg", "info": "LEGO játék a Gyűrűk ura univerzumban." },
-  { "nev": "lego ninjago", "kategoria": "jatek", "ar": 4990, "kepformatum": "lego ninjago.jpg", "info": "LEGO Ninjago játék, akcióval és küldetésekkel." },
-  { "nev": "lego star wars", "kategoria": "jatek", "ar": 6990, "kepformatum": "lego star wars.jpg", "info": "LEGO Star Wars játék, csillagháborús kalandokkal." },
-  { "nev": "legohobbit", "kategoria": "jatek", "ar": 5990, "kepformatum": "legohobbit.jpg", "info": "LEGO Hobbit játék, kaland a Ködhegyről." },
-  { "nev": "legojurassic", "kategoria": "jatek", "ar": 6990, "kepformatum": "legojurassic.jpg", "info": "LEGO Jurassic Park játék dinoszauruszokkal." },
-  { "nev": "legomarvel", "kategoria": "jatek", "ar": 8990, "kepformatum": "legomarvel.jpg", "info": "LEGO Marvel játék, szuperhős kalandokkal." },
-  { "nev": "legostarwars", "kategoria": "jatek", "ar": 9990, "kepformatum": "legostarwars.jpg", "info": "LEGO Star Wars játék, csillagháborús élménnyel." },
-  { "nev": "linux", "kategoria": "szoftver linux", "ar": 4990, "kepformatum": "linux.jpg", "info": "Linux operációs rendszer, stabil és nyílt forráskódú." }
+  {
+    "nev": "7 Days to Die",
+    "kategoria": "jatek",
+    "ar": 10490,
+    "kepformatum": "7 Days to Die.jpg",
+    "info": "A 7 Days to Die egy nyílt világú zombis túlélőjáték. A játék az FPS, RPG és crafting elemeket ötvözi. A túléléshez nyersanyaggyűjtés szükséges. Az építkezés és védekezés kulcsszerepet kap. Minden hetedik napon különösen veszélyes zombihorda érkezik. A karakter fejlődése szabadon alakítható. A világ felfedezése izgalmas és kiszámíthatatlan. Egyedül és többjátékos módban is játszható. A döntések komoly következményekkel járnak. Folyamatos feszültséget és kihívást nyújt."
+  },
+  {
+    "nev": "Microsoft 365 Personal",
+    "kategoria": "license microsoft",
+    "ar": 14990,
+    "kepformatum": "365personal.jpg",
+    "info": "A Microsoft 365 Personal egy teljes körű irodai szoftvercsomag. Tartalmazza a Word, Excel, PowerPoint és Outlook alkalmazásokat. A csomag 1 TB OneDrive felhő tárhelyet biztosít. Több eszközön is használható. Automatikus frissítéseket kap. Ideális tanuláshoz és munkához. Dokumentumok bárhonnan elérhetők. Beépített biztonsági funkciókkal rendelkezik. Könnyű együttműködést tesz lehetővé. Megbízható és széles körben használt megoldás."
+  },
+  {
+    "nev": "Roblox 4500 Robux",
+    "kategoria": "giftcard",
+    "ar": 17990,
+    "kepformatum": "4500robux.jpg",
+    "info": "A Robux a Roblox hivatalos virtuális fizetőeszköze. Segítségével tárgyak és skinek vásárolhatók. Saját játékok fejlesztésére is használható. Prémium élményt biztosít a játékban. Az avatar teljesen testreszabható vele. Gyorsan és egyszerűen beváltható. Ideális ajándék fiatal játékosoknak. Biztonságos digitális vásárlás. Kreatív lehetőségeket nyit meg. Jelentősen növeli a játékélményt."
+  },
+  {
+    "nev": "Assassin’s Creed Shadows",
+    "kategoria": "jatek",
+    "ar": 22990,
+    "kepformatum": "acshadows.jpg",
+    "info": "Az Assassin’s Creed Shadows egy történetvezérelt akció-kalandjáték. A játék részletes történelmi környezetben játszódik. Lopakodás és harc egyaránt fontos szerepet kap. A karakterfejlődés sokrétű lehetőségeket kínál. A nyílt világ szabad felfedezést tesz lehetővé. A grafika kiemelkedően részletes. A küldetések változatosak és izgalmasak. A történet érzelmes és mély. A parkour mozgás kifinomult. A sorozat rajongóinak kötelező."
+  },
+  {
+    "nev": "Adventure Time: Interactive Adventure",
+    "kategoria": "jatek",
+    "ar": 6990,
+    "kepformatum": "adventuretime.jpg",
+    "info": "Ez a játék a Kaland Idő világába kalauzol el. A karakterek és helyszínek hűen követik a sorozat stílusát. Különböző küldetések várják a játékost. A játékmenet könnyed és szórakoztató. Fiatalabb játékosok számára is ideális. Humorral teli párbeszédek jellemzik. Felfedezés és harc egyaránt része a játéknak. Színes grafika és vidám hangulat jellemzi. Rövid játékmenetekre is alkalmas. Igazi rajongói élmény."
+  },
 
+  {
+    "nev": "Angry Birds",
+    "kategoria": "jatek",
+    "ar": 3490,
+    "kepformatum": "angry birds.jpg",
+    "info": "Az Angry Birds egy ikonikus logikai játék. A cél a gonosz malacok legyőzése. Fizika alapú játékmenetet kínál. Könnyen tanulható, de kihívást jelent. Vidám grafikai stílus jellemzi. Rövid pályák gyors kikapcsolódást nyújtanak. Minden korosztály számára élvezetes. Kreatív pályatervezés jellemzi. Klasszikus mobiljáték élmény. Időtálló szórakozás."
+  },
+
+  {
+    "nev": "ARK: Survival Evolved",
+    "kategoria": "jatek",
+    "ar": 13990,
+    "kepformatum": "ark.jpg",
+    "info": "Az ARK egy nyílt világú túlélő játék dinoszauruszokkal. A játékos egy ősi szigeten reked. Nyersanyaggyűjtés és építkezés alapvető. A dinoszauruszok megszelídíthetők. Egyedül vagy online is játszható. A világ hatalmas és veszélyes. A karakter fejlődése részletes. A túlélés stratégiai gondolkodást igényel. Folyamatos kihívásokat kínál. Rendkívül tartalmas játék."
+  },
+
+  {
+    "nev": "Assassin’s Creed",
+    "kategoria": "jatek",
+    "ar": 11990,
+    "kepformatum": "assasinscreed.jpg",
+    "info": "Az Assassin’s Creed egy történelmi akciójáték. Titkos rendek és összeesküvések köré épül. Lopakodás és harc egyensúlya jellemzi. A világ részletesen kidolgozott. A történet mély és izgalmas. Parkour alapú mozgásrendszerrel rendelkezik. Karakterfejlődési rendszerrel bír. Változatos küldetéseket kínál. Filmszerű élményt nyújt. A sorozat alapköve."
+  },
+
+  {
+    "nev": "Assetto Corsa",
+    "kategoria": "jatek",
+    "ar": 9990,
+    "kepformatum": "assetto corsa.jpg",
+    "info": "Az Assetto Corsa egy realisztikus autóverseny szimulátor. Valósághű fizikai modell jellemzi. Hivatalos autók és pályák találhatók benne. Ideális szimulátoros rajongóknak. Kormánytámogatással is rendelkezik. Grafikai megoldásai letisztultak. A vezetési élmény rendkívül hiteles. Online és offline mód is elérhető. Komoly tanulási görbével rendelkezik. Profi élményt kínál."
+  },
+
+  {
+    "nev": "Assetto Corsa Competizione",
+    "kategoria": "jatek",
+    "ar": 12990,
+    "kepformatum": "assettocompetij.jpg",
+    "info": "Ez a játék a GT versenyzésre fókuszál. Hivatalos licencelt sorozatokat tartalmaz. A fizika rendkívül részletes. Profi szimulátoros élményt nyújt. Valós idejű időjárás jellemzi. Precíz vezetést igényel. Online versenyekre optimalizált. Kormány használata ajánlott. Grafikai megoldásai kiemelkedők. Komoly versenyzőknek készült."
+  },
+
+  {
+    "nev": "AVG Antivirus",
+    "kategoria": "szoftver avg",
+    "ar": 7990,
+    "kepformatum": "avg.jpg",
+    "info": "Az AVG Antivirus megbízható védelmet nyújt. Valós idejű fenyegetésfigyeléssel rendelkezik. Megvédi a számítógépet vírusoktól. Könnyen kezelhető felülettel bír. Gyors rendszerellenőrzést kínál. Automatikus frissítéseket kap. Online biztonságot növel. Alacsony erőforrás-igényű. Ideális otthoni felhasználásra. Megbízható szoftvermegoldás."
+  },
+  {
+    "nev": "Battlefield 6",
+    "kategoria": "jatek",
+    "ar": 24990,
+    "kepformatum": "bf6.jpg",
+    "info": "A Battlefield 6 egy nagyszabású, modern hadviselést bemutató FPS játék. A pályák hatalmasak és rombolhatók. A játék a csapatalapú játékmenetre helyezi a hangsúlyt. Többféle kaszt és felszerelés érhető el. A fegyverek részletesen kidolgozottak. Az online multiplayer a játék központi eleme. Járművek széles választéka áll rendelkezésre. A grafika látványos és realisztikus. Intenzív csatákat kínál. Az FPS rajongók számára kötelező cím."
+  },
+  {
+    "nev": "Back 4 Blood",
+    "kategoria": "jatek",
+    "ar": 12990,
+    "kepformatum": "black 4 blood.jpg",
+    "info": "A Back 4 Blood egy kooperatív zombis akciójáték. A játékosok csapatban küzdenek a fertőzöttek ellen. Gyors tempójú lövöldözés jellemzi. Különböző karakterek eltérő képességekkel rendelkeznek. A pályák újrajátszhatók. A kártyarendszer egyedi játékstílust biztosít. Online és baráti módban is játszható. Folyamatos kihívásokat nyújt. Intenzív és pörgős élmény. A Left 4 Dead szellemi utódja."
+  },
+  {
+    "nev": "Borderlands 3",
+    "kategoria": "jatek",
+    "ar": 11990,
+    "kepformatum": "borderlands3.jpg",
+    "info": "A Borderlands 3 egy humoros loot-shooter FPS. Különleges grafikai stílussal rendelkezik. Rengeteg fegyver és felszerelés érhető el. A történet tele van őrült karakterekkel. Kooperatív módban is játszható. A pályák változatosak. A karakterek egyedi képességekkel bírnak. Gyors tempójú harc jellemzi. Hosszú játékidőt kínál. Szórakoztató és kaotikus élmény."
+  },
+  {
+    "nev": "Borderlands 4",
+    "kategoria": "jatek",
+    "ar": 19990,
+    "kepformatum": "borderlands4.jpg",
+    "info": "A Borderlands 4 továbbviszi a sorozat őrült stílusát. Új karakterek és fegyverek kerültek a játékba. A grafika még részletesebb lett. A történet humoros és akciódús. A loot rendszer tovább bővült. Online kooperatív mód is elérhető. A világ nagyobb és változatosabb. Gyors és pörgős harcok jellemzik. Rengeteg mellékküldetés vár. A sorozat rajongóinak kihagyhatatlan."
+  },
+  {
+    "nev": "Buckshot Roulette",
+    "kategoria": "jatek",
+    "ar": 4990,
+    "kepformatum": "buckshot.jpg",
+    "info": "A Buckshot Roulette egy különleges indie horror játék. A játékmenet feszültségre épül. Minden döntés komoly következményekkel jár. A hangulat sötét és nyomasztó. Rövid, de intenzív élményt nyújt. A szabályok egyszerűek, mégis kegyetlenek. A játék pszichológiai hatásra épít. Egyedi stílusa miatt kiemelkedik. Többször is újrajátszható. Erős idegzetű játékosoknak ajánlott."
+  },
+  {
+    "nev": "The Crew 2",
+    "kategoria": "jatek",
+    "ar": 7990,
+    "kepformatum": "crew2.jpg",
+    "info": "A The Crew 2 egy nyílt világú autós versenyjáték. Az egész Egyesült Államok bejárható. Autók, motorok, hajók és repülők is vezethetők. A játék arcade stílusú irányítást kínál. Online versenyek is elérhetők. A grafika látványos és színes. Folyamatos események várják a játékost. Testreszabási lehetőségek szélesek. Könnyed, szórakoztató élményt nyújt. Ideális casual játékosoknak."
+  },
+  {
+    "nev": "Dark Souls III",
+    "kategoria": "jatek",
+    "ar": 9990,
+    "kepformatum": "dark souls 3.jpg",
+    "info": "A Dark Souls III egy kihívásokkal teli akció RPG. A játék híres nehézségéről. Precíz harcrendszerrel rendelkezik. A világ sötét és misztikus. A boss harcok emlékezetesek. A fejlődés lassú, de jutalmazó. Minden hiba tanulságos. A történet rejtetten bontakozik ki. Magas újrajátszhatóság jellemzi. Igazi hardcore élmény."
+  },
+  {
+    "nev": "Days Gone",
+    "kategoria": "jatek",
+    "ar": 10990,
+    "kepformatum": "days gone.jpg",
+    "info": "A Days Gone egy nyílt világú zombis akciójáték. A történet érzelmes és mély. A motoros közlekedés fontos szerepet kap. Hatalmas zombihordák támadnak. A világ veszélyes és kiszámíthatatlan. A karakter fejlődése fokozatos. A túlélés kulcsfontosságú. A grafika részletes. A küldetések változatosak. Hosszú játékidőt kínál."
+  },
+  
+  {
+    "nev": "DayZ",
+    "kategoria": "jatek",
+    "ar": 12490,
+    "kepformatum": "daysz.jpg",
+    "info": "A DayZ egy hardcore, nyílt világú túlélőjáték. A játékos egy zombik által fertőzött világban ébred. Az éhség, szomjúság és betegségek is veszélyt jelentenek. A fegyverek és felszerelések ritkák. Más játékosokkal is találkozhatsz, akik barátságosak vagy ellenségesek lehetnek. A halál végleges következményekkel jár. A világ hatalmas és felfedezésre vár. A hangulat realisztikus és nyomasztó. A döntések komolyan befolyásolják a túlélést. Igazi túlélő élményt nyújt."
+  },
+  {
+    "nev": "Dead by Daylight",
+    "kategoria": "jatek",
+    "ar": 9990,
+    "kepformatum": "deadbydaylight.jpg",
+    "info": "A Dead by Daylight egy aszimmetrikus multiplayer horror játék. Egy játékos a gyilkost irányítja, a többiek túlélők. A cél a menekülés vagy a vadászat. Híres horror ikonok is szerepelnek benne. A pályák sötétek és feszült hangulatúak. A túlélőknek együtt kell működniük. A gyilkosok egyedi képességekkel rendelkeznek. Folyamatos frissítéseket kap. Online közössége aktív. Rendkívül izgalmas és stresszes élmény."
+  },
+  {
+    "nev": "Deadpool",
+    "kategoria": "jatek",
+    "ar": 12990,
+    "kepformatum": "deadpool.jpg",
+    "info": "A Deadpool egy akciódús, humoros videojáték. A főhős folyamatosan megtöri a negyedik falat. Gyors tempójú közelharc és lövöldözés jellemzi. A párbeszédek tele vannak poénokkal. A történet őrült és kiszámíthatatlan. Képregényes stílusú látványvilágot kínál. Különféle fegyverek érhetők el. A karakterfejlődés egyszerű, de hatásos. Rövid, de szórakoztató játékidőt ad. Deadpool rajongóknak kötelező."
+  },
+  {
+    "nev": "Detroit: Become Human",
+    "kategoria": "jatek",
+    "ar": 13990,
+    "kepformatum": "detroit.jpg",
+    "info": "A Detroit: Become Human egy történetvezérelt kalandjáték. A játék az androidok jövőjét mutatja be. A döntéseid közvetlenül alakítják a történetet. Több befejezés is elérhető. A karakterek érzelmileg kidolgozottak. A grafika filmszerű élményt nyújt. A játék komoly morális kérdéseket vet fel. Lassabb tempójú, de rendkívül mély. Újrajátszhatósága magas. Egyedi és emlékezetes élmény."
+  },
+  {
+    "nev": "Devil May Cry",
+    "kategoria": "jatek",
+    "ar": 6990,
+    "kepformatum": "devil me.jpg",
+    "info": "A Devil May Cry egy stílusos akciójáték. Gyors és látványos harcrendszerrel rendelkezik. Kombók és speciális mozdulatok jellemzik. A démoni ellenfelek változatosak. A főhős karizmatikus személyiség. A történet misztikus elemekre épül. A pályák lineárisak, de dinamikusak. A zene fokozza az élményt. A reflexek kulcsszerepet játszanak. Az akciójátékok kedvelőinek ideális."
+  },
+  {
+    "nev": "Die Young",
+    "kategoria": "jatek",
+    "ar": 4990,
+    "kepformatum": "die young.jpg",
+    "info": "A Die Young egy nyílt világú túlélő-kalandjáték. A hangsúly a mozgáson és menekülésen van. A világ veszélyes és ellenséges. A játékosnak okosan kell gazdálkodnia az erőforrásokkal. Parkour elemek színesítik a játékmenetet. A történet fokozatosan bontakozik ki. A grafika letisztult és hangulatos. Harc helyett gyakran a lopakodás a megoldás. Feszültséggel teli élményt nyújt. Egyedi megközelítést alkalmaz."
+  },
+  {
+    "nev": "Dragon’s Dogma: Dark Arisen",
+    "kategoria": "jatek",
+    "ar": 7990,
+    "kepformatum": "dragons dogma.jpg",
+    "info": "A Dragon’s Dogma egy akció RPG nyílt világban. A harcrendszer dinamikus és látványos. Óriási szörnyek és sárkányok várnak rád. A karakterosztályok szabadon válthatók. A társak mesterséges intelligenciával működnek. A világ felfedezése jutalmazó. A történet epikus hangvételű. A felszerelések fejleszthetők. Mély RPG mechanikákat kínál. Klasszikus fantasy élményt nyújt."
+  },
+  {
+    "nev": "Dying Light 2: Stay Human",
+    "kategoria": "jatek",
+    "ar": 21990,
+    "kepformatum": "dying light2.jpg",
+    "info": "A Dying Light 2 egy nyílt világú zombis túlélőjáték. A parkour mozgás kulcsszerepet kap. A nappali és éjszakai ciklus megváltoztatja a játékmenetet. A döntéseid hatással vannak a világra. Közelharc és fegyverhasználat egyaránt fontos. A város vertikálisan bejárható. A grafika részletes és modern. Kooperatív módban is játszható. Hosszú és tartalmas játékidőt kínál. Intenzív túlélő élmény."
+  },
+  {
+    "nev": "Euro Truck Simulator 2",
+    "kategoria": "jatek",
+    "ar": 7990,
+    "kepformatum": "ets.jpg",
+    "info": "Az Euro Truck Simulator 2 egy valósághű kamionszimulátor. Európa városait járhatod be. Valós kamionmárkák szerepelnek a játékban. A vezetési élmény nyugodt és részletes. A fuvarozásból bevételt szerezhetsz. Saját céget is építhetsz. A járművek testreszabhatók. Hosszú utak és változatos rakományok várnak. Ideális relaxáló játék. A szimulátorok kedvelőinek kötelező."
+  },
+  {
+    "nev": "F1 25",
+    "kategoria": "jatek",
+    "ar": 24990,
+    "kepformatum": "f125.jpg",
+    "info": "Az F1 25 a Forma–1 hivatalos videojátéka. A játék tartalmazza az aktuális csapatokat és versenyzőket. A pályák lézerszkennelt pontossággal készültek. A vezetési modell továbbfejlesztett lett. Karrier módban saját pilótát építhetsz fel. A menedzsment elemek mélyebbek. Online multiplayer versenyek is elérhetők. A grafika rendkívül részletes. Kezdőknek és profiknak is élvezhető. Igazi motorsport élményt nyújt."
+  },
+  {
+    "nev": "Fallout 76",
+    "kategoria": "jatek",
+    "ar": 10990,
+    "kepformatum": "fallout76.jpg",
+    "info": "A Fallout 76 egy online, posztapokaliptikus RPG. A játék a Fallout univerzumban játszódik. A világ hatalmas és szabadon bejárható. Más játékosokkal együtt vagy ellen játszhatsz. Küldetések és események folyamatosan elérhetők. Bázisépítés is a játékmenet része. A karakter fejlesztése sokrétű. Fegyverek és páncélok széles választéka érhető el. Rendszeres frissítéseket kap. Egyedi online Fallout élményt kínál."
+  },
+  {
+    "nev": "Far Cry 4",
+    "kategoria": "jatek",
+    "ar": 7990,
+    "kepformatum": "farcry4.jpg",
+    "info": "A Far Cry 4 egy nyílt világú akciójáték. A Himalája ihlette környezetben játszódik. A világ tele van veszélyekkel és lehetőségekkel. Fegyverek és járművek széles skálája áll rendelkezésre. A történet egy diktátor elleni harcra épül. Lopakodás és nyílt harc is választható. A mellékküldetések változatosak. A vadon élő állatok is fenyegetést jelentenek. Kooperatív mód is elérhető. Akciódús és látványos élmény."
+  },
+  {
+    "nev": "Far Cry 5",
+    "kategoria": "jatek",
+    "ar": 9990,
+    "kepformatum": "farcry5.jpg",
+    "info": "A Far Cry 5 az Egyesült Államokban játszódik. Egy vallási szekta ellen kell harcolnod. A világ teljesen nyílt és szabadon bejárható. Fegyverek és társak segítik a túlélést. A történet sötét és feszült. Repülők és autók is vezethetők. A küldetések nem lineárisak. A grafika részletes és hangulatos. Kooperatív mód támogatott. Szabadságérzetet adó akciójáték."
+  },
+  {
+    "nev": "Far Cry 6",
+    "kategoria": "jatek",
+    "ar": 17990,
+    "kepformatum": "farcry6.jpg",
+    "info": "A Far Cry 6 egy forradalmi történetre épülő akciójáték. Egy trópusi diktatúrában játszódik. A világ színes és élettel teli. Saját felszerelésedet építheted fel. A fegyverek improvizatívak és kreatívak. A főgonosz karaktere erőteljes. A küldetések változatosak. Lopakodás és nyílt harc egyaránt lehetséges. Kooperatív módban is játszható. Látványos és pörgős élményt nyújt."
+  },
+  {
+    "nev": "Farming Simulator",
+    "kategoria": "jatek",
+    "ar": 12990,
+    "kepformatum": "farming simulat.jpg",
+    "info": "A Farming Simulator egy realisztikus mezőgazdasági szimulátor. Valós gépmárkák szerepelnek benne. A földművelés és állattartás is része a játéknak. Saját farmot építhetsz fel. A gazdálkodás stratégiai döntéseket igényel. Több térkép közül választhatsz. Kooperatív mód is elérhető. Nyugodt és részletes játékmenetet kínál. Hosszú távon is élvezhető. A szimulátor rajongók kedvence."
+  },
+  {
+    "nev": "EA Sports FC 26 (Manager mód)",
+    "kategoria": "jatek",
+    "ar": 6990,
+    "kepformatum": "fc26.jpg",
+    "info": "Ez a játék a futball menedzselésére koncentrál. A hangsúly a taktikai döntéseken van. Csapatot építhetsz és fejleszthetsz. Átigazolások és szerződések kezelése is része. A mérkőzések szimuláltak. Valós ligák és klubok szerepelnek. A statisztikák részletesek. Hosszú karrier módot kínál. A futball stratégiáját helyezi előtérbe. Menedzser játékok kedvelőinek ideális."
+  },
+  {
+    "nev": "Football Manager 2026",
+    "kategoria": "jatek",
+    "ar": 14990,
+    "kepformatum": "fm26.jpg",
+    "info": "A Football Manager 2026 egy mély futballmenedzser szimulátor. Több ezer valódi játékost tartalmaz. A taktikai rendszer rendkívül részletes. Edzések és csapatmorál is kezelhető. A meccsek részletes statisztikákkal futnak. Hosszú karrier módot kínál. Valós ligák és szabályok szerepelnek. Komoly döntéseket igényel. A tanulási görbe meredek. A műfaj egyik csúcsa."
+  },
+  {
+    "nev": "F.E.A.R.",
+    "kategoria": "jatek",
+    "ar": 4990,
+    "kepformatum": "fear.jpg",
+    "info": "A F.E.A.R. egy FPS horror játék. A lövöldözést pszichológiai horror elemek egészítik ki. Az ellenfelek mesterséges intelligenciája kiemelkedő. A harc lassított jelenetekkel tarkított. A hangulat sötét és ijesztő. A történet fokozatosan bontakozik ki. A pályák zártak és feszült tempójúak. A fegyverek kielégítőek. Klasszikus horror élményt nyújt. A műfaj egyik ikonja."
+  }
 ]
