@@ -390,7 +390,28 @@ footer {
     transform: scale(1.1);
     box-shadow: 0 6px 14px rgba(0,0,0,0.3);
 }
-
+.kosargomb {
+    position: absolute;
+    top: 140px;
+    right: 20px;
+    background-color: rgb(46, 173, 46);
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 9999;   /* <<< EZ A FONTOS */
+}
+.kosargomb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
 .filters {
   border-radius: 30px;
   background-color: rgba(51, 51, 51, 0.5);
