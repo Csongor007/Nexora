@@ -31,8 +31,8 @@ function showLoginForm() {
   popup.innerHTML = `
         <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Bejelentkezés</h2>
         <form id="loginForm" style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="email" id="loginEmail" placeholder="Email cím" required style="padding: 10px; ...">
-            <input type="password" id="loginPassword" placeholder="Jelszó" required style="padding: 10px; ...">
+            <input type="email" id="loginEmail" placeholder="Email cím" required style="padding: 10px; box-sizing: border-box; width: 100%;">
+            <input type="password" id="loginPassword" placeholder="Jelszó" required style="padding: 10px; box-sizing: border-box; width: 100%;">
             <div id="loginError" style="color: red; display: none; font-family: Orbitron, sans-serif;"></div>
             <button type="submit" style="..."">Belépés</button>
         </form>
@@ -59,9 +59,9 @@ function showRegisterForm() {
   popup.innerHTML = `
         <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Regisztráció</h2>
         <form id="registerForm" style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="text" id="registerNev" placeholder="Név" required style="padding: 10px; ...">
-            <input type="email" id="registerEmail" placeholder="Email" required style="padding: 10px; ...">
-            <input type="password" id="registerPassword" placeholder="Jelszó (min. 6 k.)" required minlength="6" style="padding: 10px; ...">
+            <input type="text" id="registerNev" placeholder="Név" required style="padding: 10px; box-sizing: border-box; width: 100%;">
+            <input type="email" id="registerEmail" placeholder="Email" required style="padding: 10px;box-sizing: border-box; width: 100%;">
+            <input type="password" id="registerPassword" placeholder="Jelszó (min. 6 k.)" required minlength="6" style="padding: 10px;box-sizing: border-box; width: 100%;">
             <div id="registerError" style="color: red; display: none;"></div>
             <button type="submit" style="...">Regisztráció</button><br>
         </form>

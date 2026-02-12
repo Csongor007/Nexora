@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/transition.css" />
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/webshop.css" />
+    <link rel="stylesheet" href="/css/cart.css" />
     <script src="/js/transitions.js"></script>
     <title>Webshop</title>
 
@@ -119,12 +120,6 @@
           <button onclick="filterByCategory('giftcard')" class="tags class">Ajándékkártyák</button>
         </div>
       </div>
-      
-      <div class="kosargomb" style="z-index: 100;">🛒</div>
-
-      <div class="keret" id="keret"></div>
-
-      <div class="keret" id="keret"></div>
 
       <div class="keret" id="keret"></div>
 
@@ -168,73 +163,82 @@ fetch("img/termekbazis/termek.json")
       img.onload = () => {
         termekDiv.innerHTML = `
           ${img.outerHTML}
-          <div style="display:inline-flex; align-items:center; gap:5px; justify-content:center; width:100%; text-align:center; margin:5px 0;">
+          <div style="display:flow; align-items:center; gap:5px; justify-content:center; width:100%; text-align:center; margin:5px 0; position:fixed;">
             <p class="nev" style="font-weight:bold; margin:0;">${termek.nev}</p>
             <p style="font-weight:bold; color:#2ead2e; margin:0;">${termek.ar.toLocaleString()} Ft</p>
           </div>
-          <div style="display:flex; justify-content:center; gap:15px; margin-top:15px;">
+          <div style="display:flex; justify-content:center; gap:15px; margin-top:75px;">
             <button class="hover-anim kosar-gomb" style="font-family:Orbitron,sans-serif; font-weight:bolder; width:150px; height:45px; background-color:rgba(46,173,46); border:none; border-radius:10px; cursor:pointer;">Kosárba🛒</button>
             <button class="hover-anim info-gomb" style="font-family:Orbitron,sans-serif; font-weight:bolder; width:150px; height:45px; background-color:rgba(46,173,46); border:none; border-radius:10px; cursor:pointer;">Termék Információℹ️</button>
           </div>
         `;
 
-        // Kosár gomb
-        termekDiv.querySelector(".kosar-gomb").addEventListener("click", () => {
-          alert(`${termek.nev} hozzáadva a kosárhoz!`);
+        // Kosár gomb - JAVÍTOTT VERZIÓ
+        termekDiv.querySelector(".kosar-gomb").addEventListener("click", (e) => {
+          const button = e.target;
+          const termekData = {
+            nev: termek.nev,
+            ar: termek.ar,
+            kategoria: termek.kategoria,
+            kep: termek.kepformatum
+          };
+          
+          // addToCart függvény a cart.js-ből
+          addToCart(button, termekData);
         });
 
         // Termék info gomb – felugró modal
         termekDiv.querySelector(".info-gomb").addEventListener("click", () => {
-  const overlay = document.createElement("div");
-  overlay.style.position = "fixed";
-  overlay.style.top = "0";
-  overlay.style.left = "0";
-  overlay.style.width = "100%";
-  overlay.style.height = "100%";
-  overlay.style.background = "rgba(0,0,0,0.5)";
-  overlay.style.backdropFilter = "blur(6px)";
-  overlay.style.display = "flex";
-  overlay.style.justifyContent = "center";
-  overlay.style.alignItems = "center";
-  overlay.style.zIndex = "1000";
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.top = "0";
+          overlay.style.left = "0";
+          overlay.style.width = "100%";
+          overlay.style.height = "100%";
+          overlay.style.background = "rgba(0,0,0,0.5)";
+          overlay.style.backdropFilter = "blur(6px)";
+          overlay.style.display = "flex";
+          overlay.style.justifyContent = "center";
+          overlay.style.alignItems = "center";
+          overlay.style.zIndex = "1000";
 
-  const modal = document.createElement("div");
-  modal.style.background = "rgba(51, 51, 51, 0.5)";
-  modal.style.backdropFilter = "blur(6px)";
-  modal.style.padding = "20px";
-  modal.style.borderRadius = "20px";
-  modal.style.borderColor = "rgb(46, 173, 46)";
-  modal.style.borderStyle = "solid";
-  modal.style.borderWidth = "5px";
-  modal.style.maxWidth = "400px";
-  modal.style.width = "90%";
-  modal.style.textAlign = "center";
-  modal.style.position = "relative";
-  modal.innerHTML = `
-    <button style="
-      position:absolute;
-      top:10px;
-      right:10px;
-      background:#2ead2e;
-      border:none;
-      border-radius:5px;
-      color:white;
-      font-weight:bold;
-      padding:5px 10px;
-      cursor:pointer;
-    ">✖</button>
-    <h2 style="margin-bottom:10px; color: #ccc;">${termek.nev}</h2>
-    <p style="font-weight:bold; color:#2ead2e;">Kategória: ${termek.kategoria}</p>
-    <p style="font-weight:bold;">Ár: ${termek.ar.toLocaleString()} Ft</p>
-    <p style="margin-top:10px;">${termek.info.replaceAll(".",".<br>")}</p> <!-- ide jön az új info mező -->
-  `;
+          const modal = document.createElement("div");
+          modal.style.background = "rgba(51, 51, 51, 0.5)";
+          modal.style.backdropFilter = "blur(6px)";
+          modal.style.padding = "20px";
+          modal.style.borderRadius = "20px";
+          modal.style.borderColor = "rgb(46, 173, 46)";
+          modal.style.borderStyle = "solid";
+          modal.style.borderWidth = "5px";
+          modal.style.maxWidth = "400px";
+          modal.style.width = "90%";
+          modal.style.textAlign = "center";
+          modal.style.position = "relative";
+          modal.innerHTML = `
+            <button style="
+              position:absolute;
+              top:10px;
+              right:10px;
+              background:#2ead2e;
+              border:none;
+              border-radius:5px;
+              color:white;
+              font-weight:bold;
+              padding:5px 10px;
+              cursor:pointer;
+            ">✖</button>
+            <h2 style="margin-bottom:10px; color: #ccc;">${termek.nev}</h2>
+            <p style="font-weight:bold; color:#2ead2e;">Kategória: ${termek.kategoria}</p>
+            <p style="font-weight:bold;">Ár: ${termek.ar.toLocaleString()} Ft</p>
+            <p style="margin-top:10px;">${termek.info ? termek.info.replaceAll(".",".<br>") : 'Nincs további információ.'}</p>
+          `;
 
-  modal.querySelector("button").addEventListener("click", () => {
-    document.body.removeChild(overlay);
-  });
+          modal.querySelector("button").addEventListener("click", () => {
+            document.body.removeChild(overlay);
+          });
 
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
+          overlay.appendChild(modal);
+          document.body.appendChild(overlay);
         });
 
         keret.appendChild(termekDiv);
@@ -269,7 +273,7 @@ fetch("img/termekbazis/termek.json")
     <script src="/js/ui-effects.js"></script>
     <script src="/js/filters.js"></script>
     <script src="/js/auth-popup.js"></script>
+    <script src="/js/cart.js"></script>
   </body>
   
 </html>
-
