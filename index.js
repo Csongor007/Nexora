@@ -50,6 +50,11 @@ app.get("/webshop", (req, res) => {
   res.render("webshop", { user: req.session.user || null });
 });
 
+// Checkout oldal - CSAK bejelentkezett felhasználóknak!
+app.get("/checkout", authMiddleware, (req, res) => {
+  res.render("checkout", { user: req.session.user });
+});
+
 // Register POST - JSON és form support
 app.post("/register", async (req, res) => {
   try {

@@ -38,7 +38,7 @@ function createWarningDiv() {
   const warning = document.createElement('div');
   warning.id = 'cartWarning';
   warning.className = 'cart-warning';
-  warning.textContent = 'Elérted a maximum 10 terméket! 🛑';
+  warning.textContent = 'Elérted a maximum 10 terméket!🛑';
   document.body.appendChild(warning);
 }
 
@@ -232,7 +232,8 @@ function showCartModal(title, content) {
     font-family: Orbitron, sans-serif;
   `;
   
-  modal.innerHTML = title ? `<h2 style="color: #2ead2e; margin-bottom: 15px;">${title}</h2><p>${content}</p>` : content;
+  modal.innerHTML = title ? 
+    `<h2 style="color: #2ead2e; margin-bottom: 15px;">${title}</h2><p>${content}</p>` : content;
   
   overlay.appendChild(modal);
   overlay.onclick = (e) => {
@@ -252,21 +253,33 @@ function closeCartModal() {
   }
 }
 
-// Fizetés folyamat (egyelőre csak üzenet)
+// Fizetés folyamat - ELLENŐRZI A BEJELENTKEZÉST!
 function checkout() {
   if (cartCount === 0) return;
   
-  closeCartModal();
+  // Bejelentkezés ellenőrzése - a window.loggedInUser változót az EJS állítja be
+  if (!window.loggedInUser) {
+    // Ha nincs bejelentkezve, figyelmeztetés
+    closeCartModal();
+    
+    showCartModal(
+      '⚠️ Bejelentkezés szükséges', 
+      `<p style="margin-bottom: 20px;">A rendelés véglegesítéséhez be kell jelentkezned!</p>
+       <p style="margin-bottom: 20px; color: #ccc;">Kérjük, jelentkezz be vagy regisztrálj, hogy folytathasd a vásárlást.</p>
+       <button onclick="closeCartModal(); document.getElementById('floatingBtn').click();" 
+               style="padding: 12px 30px; background: #2ead2e; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-right: 10px;">
+         Bejelentkezés
+       </button>
+       <button onclick="closeCartModal()" 
+               style="padding: 12px 30px; background: #555; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+         Mégse
+       </button>`
+    );
+    return;
+  }
   
-  // Ide jön majd a fizetési logika
-  showCartModal(
-    'Fizetés', 
-    `<p>Összesen ${cartCount} termék, ${cartItems.reduce((sum, item) => sum + item.ar, 0).toLocaleString()} Ft értékben.</p>
-     <p style="margin-top: 15px; color: #2ead2e;">A fizetési funkció hamarosan elérhető lesz!</p>
-     <button onclick="closeCartModal()" style="margin-top: 20px; padding: 12px 30px; background: #2ead2e; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
-       Rendben
-     </button>`
-  );
+  // Ha be van jelentkezve, átirányítás a checkout oldalra
+  window.location.href = '/checkout';
 }
 
 // localStorage kezelés

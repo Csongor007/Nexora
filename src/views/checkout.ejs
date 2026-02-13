@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/index.css" type="text/css" />
+    <link rel="stylesheet" href="/css/checkout.css" type="text/css" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Nexora - Fizetés és Rendelés" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/ico" href="/img/icons/nexora_logo_tp.png" />
+    <link rel="stylesheet" href="/css/transition.css" />
+    <script src="/js/transitions.js"></script>
+    <title>Fizetés - Nexora</title>
+
+    <div class="box">
+      <div class="wave -one"></div>
+      <div class="wave -two"></div>
+      <div class="wave -three"></div>
+    </div>
+
+    <div class="background"></div>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="/js/ui-effects.js" defer></script>
+  </head>
+  <body>
+    <div id="particle-background"></div>
+
+    <div class="transition transition-1 is-active"></div>
+    <header>
+      <button class="menu-toggle">☰</button>
+      <nav class="left">
+        <ul class="nav-menu">
+          <li>
+            <a href="/webshop" title="Webshop"><img src="/img/icons/bags-shopping.webp" alt="Webshop" /></a>
+          </li>
+          <li>
+            <a href="/aszf" title="ÁSZF"><img src="/img/icons/terms-info.webp" alt="ÁSZF" /></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="logo">
+        <a href="/" title="Főoldal"><img src="/img/icons/nexora_logo_tp.webp" alt="Logo" /></a>
+      </div>
+      <nav class="right">
+        <ul class="nav-menu2">
+          <li>
+            <a href="/kontakt" title="Elérhetőségek"><img src="/img/icons/clip-mail.webp" alt="Elérhetőségek" /></a>
+          </li>
+          <li>
+            <a href="#" title="Profil"><img src="/img/icons/profile.webp" alt="Profil" class="floating-btn" id="floatingBtn" /></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main style="z-index: 1; margin: 0 auto; transform: none; padding: 120px 2rem 40px;">
+      <div class="checkout-container">
+        <h1 class="checkout-title">Rendelési adatok</h1>
+        
+        <div class="checkout-content">
+          <!-- Bal oldal: Rendelési űrlap -->
+          <div class="checkout-form-section">
+            <div class="form-group">
+              <h2>Vásárlói adatok</h2>
+              <form id="checkoutForm">
+                <div class="input-group">
+                  <label for="name">Név *</label>
+                  <input type="text" id="name" name="name" required value="<%= user ? user.nev : '' %>" />
+                </div>
+
+                <div class="input-group">
+                  <label for="email">Email cím *</label>
+                  <input type="email" id="email" name="email" required value="<%= user ? user.email : '' %>" />
+                  <small style="color: #888; font-size: 0.85rem; display: block; margin-top: 5px;">
+                    Az aktivációs kulcsokat erre a címre küldjük ki
+                  </small>
+                </div>
+
+                <div class="input-group">
+                  <label for="phone">Telefonszám *</label>
+                  <input type="tel" id="phone" name="phone" required placeholder="+36 XX XXX XXXX" />
+                </div>
+
+                <h2 style="margin-top: 30px;">Számlázási adatok</h2>
+
+                <div class="input-group">
+                  <label for="country">Ország *</label>
+                  <input type="text" id="country" name="country" required value="Magyarország" />
+                </div>
+
+                <div class="input-row">
+                  <div class="input-group">
+                    <label for="city">Város *</label>
+                    <input type="text" id="city" name="city" required placeholder="Budapest" />
+                  </div>
+
+                  <div class="input-group">
+                    <label for="zip">Irányítószám *</label>
+                    <input type="text" id="zip" name="zip" required placeholder="1234" />
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label for="address">Utca, házszám *</label>
+                  <input type="text" id="address" name="address" required placeholder="Példa utca 12." />
+                </div>
+
+                <h2 style="margin-top: 30px;">Fizetési mód</h2>
+                
+                <div class="payment-methods">
+                  <label class="payment-option">
+                    <input type="radio" name="payment" value="card" checked />
+                    <div class="payment-card">
+                      <span class="payment-icon">💳</span>
+                      <span>Bankkártya</span>
+                    </div>
+                  </label>
+
+                  <label class="payment-option">
+                    <input type="radio" name="payment" value="apple_pay" />
+                    <div class="payment-card">
+                      <span class="payment-icon"><img src="/img/icons/apple.svg" alt="Apple Pay"></span>
+                      <span>Apple Pay</span>
+                    </div>
+                  </label>
+
+                  <label class="payment-option">
+                    <input type="radio" name="payment" value="google_pay" />
+                    <div class="payment-card">
+                      <span class="payment-icon">🅖</span>
+                      <span>Google Pay</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="terms-checkbox">
+                  <input type="checkbox" id="terms" required />
+                  <label for="terms">Elfogadom az <a href="/aszf" target="_blank">ÁSZF</a>-et és az <a href="/adatvedelem" target="_blank">Adatvédelmi nyilatkozatot</a> *</label>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Jobb oldal: Kosár összesítő -->
+          <div class="checkout-summary-section">
+            <div class="summary-card">
+              <h2>Rendelés összesítő</h2>
+              <div id="cartSummary" class="cart-items-summary">
+                <!-- JavaScript tölti fel -->
+              </div>
+              
+              <div class="summary-totals">
+                <div class="summary-row">
+                  <span>Részösszeg:</span>
+                  <span id="subtotal">0 Ft</span>
+                </div>
+                <div class="summary-row">
+                  <span>Rendszerhasználati díj:</span>
+                  <span id="serviceFee">990 Ft</span>
+                </div>
+                <div class="summary-row total-row">
+                  <span>Végösszeg:</span>
+                  <span id="total">0 Ft</span>
+                </div>
+              </div>
+
+              <button type="button" id="submitOrder" class="checkout-btn">
+                Rendelés véglegesítése
+              </button>
+
+              <a href="/webshop" class="back-link">← Vissza a webshopba</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="visszanyil" id="Visszanyil" style="z-index: 10;">▲</div>
+
+    <footer style="margin-top: 20px;">
+      <p>&copy; <span id="year"></span> Nexora. All rights reserved.</p>
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </footer>
+
+    <script>
+      window.loggedInUser = <%- user ? JSON.stringify(user) : 'null' %>;
+    </script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/auth-popup.js"></script>
+    <script src="/js/checkout.js"></script>
+  </body>
+</html>
