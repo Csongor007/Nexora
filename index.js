@@ -19,11 +19,12 @@ app.use(express.static("src/public"));
 app.use(
   session({
     secret: "valami-nagyon-titkos-kulcs-2025-nexora",
-    resave: false,
+    resave: true, // Mindig mentse a sessiont még ha nem változott is
     saveUninitialized: false,
     cookie: {
-      secure: false,
-      maxAge: 24 * 60 * 60 * 1000,
+      secure: false, // true lenne HTTPS-nél
+      httpOnly: true,
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 nap (milliszekundumban)
     },
   }),
 );
@@ -31,6 +32,15 @@ app.use(
 // View engine
 app.set("view engine", "ejs");
 app.set("views", "src/views");
+
+// Session frissítő middleware - minden kérésnél frissíti a session lejáratát
+app.use((req, res, next) => {
+  if (req.session && req.session.userId) {
+    // Ha be van jelentkezve, frissítsd a session maxAge-t
+    req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // 30 nap
+  }
+  next();
+});
 
 // Middleware a bejelentkezett felhasználó ellenőrzésére
 const authMiddleware = (req, res, next) => {
