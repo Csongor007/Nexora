@@ -47,6 +47,8 @@ const authMiddleware = (req, res, next) => {
   if (!req.session.userId) {
     return res.redirect("/webshop");
   }
+  // Session frissítése hogy ne járjon le
+  req.session.touch();
   next();
 };
 
@@ -256,6 +258,106 @@ app.get("/gyik", (req, res) => {
 
 app.get("/kontakt", (req, res) => {
   res.render("kontakt", { user: req.session.user || null });
+});
+
+// Rendelés feldolgozás POST endpoint
+app.post("/order/create", authMiddleware, async (req, res) => {
+  try {
+    const { name, email, phone, country, address, city, zip, payment, cartItems, subtotal, serviceFee, total } = req.body;
+
+    // Validáció
+    if (!name || !email || !phone || !country || !address || !city || !zip || !payment || !cartItems || cartItems.length === 0) {
+      return res.status(400).json({ error: "Minden mező kitöltése kötelező és a kosár nem lehet üres!" });
+    }
+
+    // Összegek konvertálása (eltávolítjuk a "Ft" szöveget és a space-eket)
+    const vegosszeg = parseFloat(total.replace(/[^0-9]/g, '')) || 0;
+    const rendszerhaszn_dij = parseFloat(serviceFee.replace(/[^0-9]/g, '')) || 990;
+
+    // Aktivációs kulcs generátor függvény
+    function generateActivationKey() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let key = '';
+      for (let i = 0; i < 3; i++) {
+        let segment = '';
+        for (let j = 0; j < 8; j++) {
+          segment += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        key += segment;
+        if (i < 2) key += '-';
+      }
+      return key; // Formátum: XXXXXXXX-XXXXXXXX-XXXXXXXX
+    }
+
+    // Rendelés létrehozása tranzakcióban
+    const rendeles = await DB.$transaction(async (prisma) => {
+      // 1. Rendelés létrehozása
+      const ujRendeles = await prisma.rendelesek.create({
+        data: {
+          felhasznalo_id: req.session.userId,
+          vegosszeg: vegosszeg,
+          rendszerhaszn_dij: rendszerhaszn_dij,
+          fizetesi_mod: payment,
+          allapot: 'feldolgozas_alatt',
+        },
+      });
+
+      // 2. Számlázási adatok mentése
+      await prisma.szamlazasi_adatok.create({
+        data: {
+          rendeles_id: ujRendeles.id,
+          nev: name,
+          email: email,
+          telefonszam: phone,
+          orszag: country,
+          varos: city,
+          iranyitoszam: zip,
+          utca_hazszam: address,
+        },
+      });
+
+      // 3. Rendelési tételek létrehozása aktivációs kulcsokkal
+      for (const item of cartItems) {
+        const aktivaciosKulcs = generateActivationKey();
+        
+        await prisma.rendeles_tetel.create({
+          data: {
+            rendeles_id: ujRendeles.id,
+            termek_nev: item.nev,
+            termek_kategoria: item.kategoria,
+            egysegar: parseFloat(item.ar),
+            mennyiseg: 1,
+            aktivacios_kulcs: aktivaciosKulcs,
+            kulcs_elkuldve: false,
+            aktivalt: false,
+          },
+        });
+      }
+
+      return ujRendeles;
+    });
+
+    // Session mentése hogy ne vesszen el
+    req.session.save((err) => {
+      if (err) {
+        console.error('Session mentési hiba:', err);
+      }
+      
+      // Sikeres válasz
+      return res.json({
+        success: true,
+        orderId: rendeles.id,
+        message: "Rendelés sikeresen létrehozva!",
+      });
+    });
+
+  } catch (error) {
+    console.error("Rendelés hiba:", error);
+    return res.status(500).json({ 
+      error: "Hiba történt a rendelés feldolgozása során!",
+      details: error.message 
+    });
+  }
 });
 
 app.listen(PORT, () => {

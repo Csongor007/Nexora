@@ -81,16 +81,312 @@ function setupFormSubmit() {
       total: document.getElementById('total').textContent
     };
     
-    // Gomb letiltása
-    submitButton.disabled = true;
-    submitButton.textContent = 'Feldolgozás...';
+    // Fizetési mód alapján különböző ablak
+    if (formData.payment === 'card') {
+      showCardPaymentModal(formData);
+    } else if (formData.payment === 'apple_pay') {
+      showApplePayModal(formData);
+    } else if (formData.payment === 'google_pay') {
+      showGooglePayModal(formData);
+    }
+  });
+}
+
+// Bankkártyás fizetési ablak
+function showCardPaymentModal(formData) {
+  const overlay = document.createElement('div');
+  overlay.id = 'paymentModal';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  `;
+  
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: rgba(51, 51, 51, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid #2ead2e;
+    max-width: 500px;
+    width: 90%;
+    color: white;
+    font-family: Orbitron, sans-serif;
+  `;
+  
+  modal.innerHTML = `
+    <h2 style="color: #2ead2e; margin-bottom: 25px; text-align: center;">💳 Bankkártyás fizetés</h2>
     
-    try {
-      // Itt jöhet majd a tényleges szerver-oldali mentés
-      // Egyelőre csak szimuláljuk
-      await new Promise(resolve => setTimeout(resolve, 1500));
+    <div style="margin-bottom: 20px;">
+      <p style="color: #ccc; margin-bottom: 10px; font-size: 0.9rem;">Fizetendő összeg:</p>
+      <p style="color: #2ead2e; font-size: 1.5rem; font-weight: bold; text-align: center;">${formData.total}</p>
+    </div>
+    
+    <form id="cardForm" style="display: flex; flex-direction: column; gap: 15px;">
+      <div>
+        <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px;">Kártyaszám *</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required
+               style="width: 100%; padding: 12px; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(46, 173, 46, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif; box-sizing: border-box;">
+      </div>
       
-      // Siker
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div>
+          <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px;">Lejárat *</label>
+          <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" required
+                 style="width: 100%; padding: 12px; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(46, 173, 46, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px;">CVV *</label>
+          <input type="text" id="cardCVV" placeholder="123" maxlength="3" required
+                 style="width: 100%; padding: 12px; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(46, 173, 46, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif; box-sizing: border-box;">
+        </div>
+      </div>
+      
+      <div>
+        <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px;">Kártyabirtokos neve *</label>
+        <input type="text" id="cardName" placeholder="KOVÁCS JÁNOS" required
+               style="width: 100%; padding: 12px; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(46, 173, 46, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif; box-sizing: border-box;">
+      </div>
+      
+      <p style="color: #888; font-size: 0.75rem; text-align: center; margin-top: 10px;">
+        🔒 A kártyaadatokat nem tároljuk, biztonságos kapcsolaton keresztül kerülnek feldolgozásra.
+      </p>
+      
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button type="button" onclick="closePaymentModal()" 
+                style="flex: 1; padding: 14px; background: #555; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+          Mégse
+        </button>
+        <button type="submit" id="cardPayButton"
+                style="flex: 1; padding: 14px; background: #2ead2e; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+          Fizetés
+        </button>
+      </div>
+    </form>
+  `;
+  
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  
+  // Kártyaszám formázás
+  document.getElementById('cardNumber').addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\s/g, '');
+    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+    e.target.value = formattedValue;
+  });
+  
+  // Lejárat formázás
+  document.getElementById('cardExpiry').addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2, 4);
+    }
+    e.target.value = value;
+  });
+  
+  // CVV csak számok
+  document.getElementById('cardCVV').addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '');
+  });
+  
+  // Form submit
+  document.getElementById('cardForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Validáció
+    const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+    const cardExpiry = document.getElementById('cardExpiry').value;
+    const cardCVV = document.getElementById('cardCVV').value;
+    const cardName = document.getElementById('cardName').value;
+    
+    if (cardNumber.length !== 16 || cardCVV.length !== 3 || !cardExpiry.includes('/')) {
+      showMessage('Kérjük, adj meg érvényes kártyaadatokat!', 'error');
+      return;
+    }
+    
+    // Fizetés gomb letiltása
+    const payButton = document.getElementById('cardPayButton');
+    payButton.disabled = true;
+    payButton.textContent = 'Feldolgozás...';
+    
+    // Rendelés leadása
+    await processOrder(formData);
+  });
+}
+
+// Apple Pay ablak
+function showApplePayModal(formData) {
+  const overlay = document.createElement('div');
+  overlay.id = 'paymentModal';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  `;
+  
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: rgba(51, 51, 51, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid #2ead2e;
+    max-width: 450px;
+    width: 90%;
+    color: white;
+    font-family: Orbitron, sans-serif;
+    text-align: center;
+  `;
+  
+  modal.innerHTML = `
+    <div style="font-size: 4rem; margin-bottom: 20px;"></div>
+    <h2 style="color: #2ead2e; margin-bottom: 20px;">Apple Pay fizetés</h2>
+    
+    <div style="margin-bottom: 30px;">
+      <p style="color: #ccc; margin-bottom: 10px;">Fizetendő összeg:</p>
+      <p style="color: #2ead2e; font-size: 1.8rem; font-weight: bold;">${formData.total}</p>
+    </div>
+    
+    <p style="color: #ccc; margin-bottom: 30px; font-size: 0.95rem;">
+      Erősítsd meg a fizetést az eszközöd Touch ID vagy Face ID funkciójával.
+    </p>
+    
+    <div style="display: flex; gap: 10px;">
+      <button onclick="closePaymentModal()" 
+              style="flex: 1; padding: 14px; background: #555; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+        Mégse
+      </button>
+      <button onclick="confirmApplePay()" id="applePayButton"
+              style="flex: 1; padding: 14px; background: #2ead2e; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+         Megerősítés
+      </button>
+    </div>
+  `;
+  
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  
+  // Apple Pay megerősítés
+  window.confirmApplePay = async () => {
+    const button = document.getElementById('applePayButton');
+    button.disabled = true;
+    button.textContent = 'Feldolgozás...';
+    await processOrder(formData);
+  };
+}
+
+// Google Pay ablak
+function showGooglePayModal(formData) {
+  const overlay = document.createElement('div');
+  overlay.id = 'paymentModal';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  `;
+  
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: rgba(51, 51, 51, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid #2ead2e;
+    max-width: 450px;
+    width: 90%;
+    color: white;
+    font-family: Orbitron, sans-serif;
+    text-align: center;
+  `;
+  
+  modal.innerHTML = `
+    <div style="font-size: 4rem; margin-bottom: 20px;">🅖</div>
+    <h2 style="color: #2ead2e; margin-bottom: 20px;">Google Pay fizetés</h2>
+    
+    <div style="margin-bottom: 30px;">
+      <p style="color: #ccc; margin-bottom: 10px;">Fizetendő összeg:</p>
+      <p style="color: #2ead2e; font-size: 1.8rem; font-weight: bold;">${formData.total}</p>
+    </div>
+    
+    <p style="color: #ccc; margin-bottom: 30px; font-size: 0.95rem;">
+      Erősítsd meg a fizetést a Google Pay alkalmazásodban.
+    </p>
+    
+    <div style="display: flex; gap: 10px;">
+      <button onclick="closePaymentModal()" 
+              style="flex: 1; padding: 14px; background: #555; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+        Mégse
+      </button>
+      <button onclick="confirmGooglePay()" id="googlePayButton"
+              style="flex: 1; padding: 14px; background: #2ead2e; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold;">
+        🅖 Megerősítés
+      </button>
+    </div>
+  `;
+  
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  
+  // Google Pay megerősítés
+  window.confirmGooglePay = async () => {
+    const button = document.getElementById('googlePayButton');
+    button.disabled = true;
+    button.textContent = 'Feldolgozás...';
+    await processOrder(formData);
+  };
+}
+
+// Fizetési modal bezárása
+function closePaymentModal() {
+  const modal = document.getElementById('paymentModal');
+  if (modal) {
+    modal.remove();
+  }
+}
+
+// Rendelés feldolgozása - szerver hívás
+async function processOrder(formData) {
+  try {
+    const response = await fetch('/order/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      // Fizetési modal bezárása
+      closePaymentModal();
+      
+      // Siker üzenet
       showSuccessMessage(formData);
       
       // Kosár törlése
@@ -100,15 +396,22 @@ function setupFormSubmit() {
       // Átirányítás 3 másodperc múlva
       setTimeout(() => {
         window.location.href = '/webshop';
-      }, 3000);
-      
-    } catch (error) {
-      console.error('Hiba a rendelés során:', error);
-      showMessage('Hiba történt a rendelés során. Kérjük, próbáld újra!', 'error');
+      }, 10000);
+    } else {
+      throw new Error(data.error || 'Ismeretlen hiba történt');
+    }
+  } catch (error) {
+    console.error('Rendelés hiba:', error);
+    closePaymentModal();
+    showMessage('Hiba történt a rendelés során: ' + error.message, 'error');
+    
+    // Gomb újra engedélyezése
+    const submitButton = document.getElementById('submitOrder');
+    if (submitButton) {
       submitButton.disabled = false;
       submitButton.textContent = 'Rendelés véglegesítése';
     }
-  });
+  }
 }
 
 // Üzenet megjelenítése
@@ -219,7 +522,7 @@ function showSuccessMessage(formData) {
     </p>
     <div style="margin-top: 20px;">
       <div style="width: 100%; height: 4px; background: rgba(46, 173, 46, 0.2); border-radius: 2px; overflow: hidden;">
-        <div style="width: 100%; height: 100%; background: #2ead2e; animation: progress 3s linear;"></div>
+        <div style="width: 100%; height: 100%; background: #2ead2e; animation: progress 10s linear;"></div>
       </div>
     </div>
   `;
