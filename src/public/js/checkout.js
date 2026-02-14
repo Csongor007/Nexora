@@ -256,7 +256,9 @@ function showApplePayModal(formData) {
   `;
   
   modal.innerHTML = `
-    <div style="font-size: 4rem; margin-bottom: 20px;"></div>
+    <div style="font-size: 4rem; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; height: 4rem;">
+      <img src="/img/icons/apple.svg" alt="Apple Pay" style="height: 4rem; width: auto; object-fit: contain;">
+    </div>
     <h2 style="color: #2ead2e; margin-bottom: 20px;">Apple Pay fizetés</h2>
     
     <div style="margin-bottom: 30px;">
@@ -393,7 +395,7 @@ async function processOrder(formData) {
       localStorage.removeItem('nexoraCart');
       localStorage.removeItem('nexoraCartCount');
       
-      // Átirányítás 3 másodperc múlva
+      // Átirányítás 10 másodperc múlva
       setTimeout(() => {
         window.location.href = '/webshop';
       }, 10000);
