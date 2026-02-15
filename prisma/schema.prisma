@@ -9,59 +9,139 @@ datasource db {
 }
 
 model felhasznalok {
-  id          Int      @id @default(autoincrement()) @db.UnsignedInt
-  email       String   @unique @db.VarChar(50)
-  jelszo_hash String   @db.Text
-  nev         String   @db.VarChar(50)
-  letrehozva  DateTime @default(now()) @db.Timestamp(0)
+  id          Int          @id @default(autoincrement()) @db.UnsignedInt
+  email       String       @unique @db.VarChar(50)
+  jelszo_hash String       @db.Text
+  nev         String       @db.VarChar(50)
+  letrehozva  DateTime     @default(now()) @db.Timestamp(0)
+  rendelesek  rendelesek[]
 }
 
+model kategoriak {
+  id  Int    @id @default(autoincrement()) @db.UnsignedInt
+  nev String @db.VarChar(50)
+}
+
+model termekek {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  nev         String  @db.VarChar(50)
+  ar          Decimal @db.Decimal(10, 2)
+  kategoria   String  @db.VarChar(50)
+  kepformatum String  @db.Text
+  keszlet     Int     @default(0) @db.UnsignedInt
+}
+
+// RENDELÉSEK - Digitális termékekhez optimalizálva
 model rendelesek {
-  id                Int       @id @default(autoincrement()) @db.UnsignedInt
-  felhasznalo_id    Int       @db.UnsignedInt
-  vegosszeg         Decimal   @db.Decimal(10, 2)
-  rendszerhaszn_dij Decimal   @default(990.00) @db.Decimal(10, 2)
-  fizetesi_mod      String    @db.VarChar(50)
-  allapot           String    @default("feldolgozas_alatt") @db.VarChar(50)
-  rendelve          DateTime  @default(now()) @db.Timestamp(0)
-  teljesitve_at     DateTime? @db.Timestamp(0)
+  id                 Int                  @id @default(autoincrement()) @db.UnsignedInt
+  felhasznalo_id     Int                  @db.UnsignedInt
+  felhasznalo        felhasznalok         @relation(fields: [felhasznalo_id], references: [id])
+  vegosszeg          Decimal              @db.Decimal(10, 2)
+  rendszerhaszn_dij  Decimal              @default(990) @db.Decimal(10, 2) // Rendszerhasználati díj
+  fizetesi_mod       String               @db.VarChar(50) // 'card', 'apple_pay', 'google_pay'
+  allapot            String               @default("feldolgozas_alatt") @db.VarChar(50) // 'feldolgozas_alatt', 'teljesitve', 'sikertelen'
+  rendelve           DateTime             @default(now()) @db.Timestamp(0)
+  teljesitve_at      DateTime?            @db.Timestamp(0)
+  rendeles_tetel     rendeles_tetel[]
+  szamlazasi_adatok  szamlazasi_adatok?
 
   @@index([felhasznalo_id], map: "FK_rendelesek_felhasznalok")
 }
 
+// RENDELÉSI TÉTELEK - Kapcsolat a termékekkel
 model rendeles_tetel {
-  id               Int       @id @default(autoincrement()) @db.UnsignedInt
-  rendeles_id      Int       @db.UnsignedInt
-  termek_nev       String    @db.VarChar(255)
-  termek_kategoria String    @db.VarChar(50)
-  egysegar         Decimal   @db.Decimal(10, 2)
-  mennyiseg        Int       @default(1) @db.UnsignedInt
-  aktivacios_kulcs String?   @db.VarChar(255)
-  kulcs_elkuldve   Boolean   @default(false)
-  aktivalt         Boolean   @default(false)
-  aktivalt_at      DateTime? @db.Timestamp(0)
+  id                    Int                     @id @default(autoincrement()) @db.UnsignedInt
+  rendeles_id           Int                     @db.UnsignedInt
+  rendeles              rendelesek              @relation(fields: [rendeles_id], references: [id])
+  termek_nev            String                  @db.VarChar(255) // Termék neve (JSON-ből)
+  termek_kategoria      String                  @db.VarChar(50) // Termék kategóriája
+  egysegar              Decimal                 @db.Decimal(10, 2) // Termék ára a rendelés pillanatában
+  mennyiseg             Int                     @default(1) @db.UnsignedInt
+  aktivacios_kulcs      String?                 @db.VarChar(255) // A kioszott aktivációs kulcs
+  kulcs_elkuldve        Boolean                 @default(false) // Email-ben elküldve
+  aktivalt              Boolean                 @default(false) // Felhasználó aktiválta-e
+  aktivalt_at           DateTime?               @db.Timestamp(0)
 
   @@index([rendeles_id], map: "FK_rendeles_tetel_rendelesek")
 }
 
+// SZÁMLÁZÁSI ADATOK - Vevő adatai
 model szamlazasi_adatok {
-  id           Int    @id @default(autoincrement()) @db.UnsignedInt
-  rendeles_id  Int    @unique @db.UnsignedInt
-  nev          String @db.VarChar(100)
-  email        String @db.VarChar(100)
-  telefonszam  String @db.VarChar(20)
-  orszag       String @default("Magyarország") @db.VarChar(50)
-  varos        String @db.VarChar(50)
-  iranyitoszam String @db.VarChar(10)
-  utca_hazszam String @db.VarChar(100)
+  id              Int        @id @default(autoincrement()) @db.UnsignedInt
+  rendeles_id     Int        @unique @db.UnsignedInt
+  rendeles        rendelesek @relation(fields: [rendeles_id], references: [id])
+  nev             String     @db.VarChar(100)
+  email           String     @db.VarChar(100)
+  telefonszam     String     @db.VarChar(20)
+  orszag          String     @default("Magyarország") @db.VarChar(50)
+  varos           String     @db.VarChar(50)
+  iranyitoszam    String     @db.VarChar(10)
+  utca_hazszam    String     @db.VarChar(100)
 
   @@index([rendeles_id], map: "FK_szamlazas_rendelesek")
 }
 
+// AKTIVÁCIÓS KULCSOK - Készlet a termékekhez (később töltöd fel)
+model aktivaciokulcsok {
+  id             Int       @id @default(autoincrement()) @db.UnsignedInt
+  termek_nev     String    @db.VarChar(255) // Termék neve (JSON-ből)
+  termek_kategoria String  @db.VarChar(50) // Kategória
+  kulcs          String    @unique @db.VarChar(255)
+  eladva         Boolean   @default(false)
+  eladva_at      DateTime? @db.Timestamp(0)
+  rendeles_tetel_id Int?   @db.UnsignedInt // Melyik rendelési tételhez lett kiosztva
+
+  @@index([termek_nev, eladva], map: "IDX_kulcsok_termek_eladas")
+}
+
+// KAPCSOLATFELVÉTEL
 model kapcsolatfelvetel {
   id     Int      @id @default(autoincrement()) @db.UnsignedInt
   Nev    String   @db.VarChar(50)
   Email  String   @db.VarChar(50)
   Uzenet String   @db.Text
   Kuldve DateTime @default(now()) @db.Timestamp(0)
+}
+
+// Régi táblák, amiket megtartunk de nem használunk most
+model feltoltokartya {
+  kartya_id   Int    @id @default(autoincrement()) @db.UnsignedInt
+  termek_id   Int    @db.UnsignedInt
+  szolgaltato String @db.VarChar(50)
+  ertek       Int    @db.UnsignedInt
+
+  @@index([termek_id], map: "FK_feltoltokartya_termekek")
+}
+
+model jatekok {
+  jatek_id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  termek_id         Int      @db.UnsignedInt
+  platform          String   @db.VarChar(50)
+  mufaj             String   @db.VarChar(50)
+  megjelenesi_datum DateTime @db.DateTime(0)
+
+  @@index([termek_id], map: "FK_jatekok_termekek")
+}
+
+model szallitas {
+  id           Int    @id @default(autoincrement()) @db.UnsignedInt
+  rendeles_id  Int    @db.UnsignedInt
+  vezeteknev   String @db.VarChar(50)
+  keresztnev   String @db.VarChar(50)
+  orszag       String @db.VarChar(50)
+  varos        String @db.VarChar(50)
+  iranyitoszam String @db.VarChar(50)
+  utca         String @db.VarChar(50)
+  telefonszam  String @db.VarChar(50)
+
+  @@index([rendeles_id], map: "FK_szallitas_rendelesek")
+}
+
+model szoftverek {
+  szoftver_id        Int    @id @default(autoincrement()) @db.UnsignedInt
+  termek_id          Int    @db.UnsignedInt
+  licensz_tipus      String @db.VarChar(50)
+  operacios_rendszer String @db.VarChar(50)
+
+  @@index([termek_id], map: "FK_szoftverek_termekek")
 }

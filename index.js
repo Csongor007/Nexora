@@ -260,6 +260,126 @@ app.get("/kontakt", (req, res) => {
   res.render("kontakt", { user: req.session.user || null });
 });
 
+// Rendelések letöltése TXT formátumban - ZIP-elve
+app.get("/orders/download", authMiddleware, async (req, res) => {
+  try {
+    const felhasznaloId = req.session.userId;
+    
+    // Felhasználó rendeléseinek lekérése
+    const rendelesek = await DB.rendelesek.findMany({
+      where: {
+        felhasznalo_id: felhasznaloId,
+      },
+      include: {
+        rendeles_tetel: true,
+        szamlazasi_adatok: true,
+      },
+      orderBy: {
+        rendelve: 'desc',
+      },
+    });
+    
+    if (rendelesek.length === 0) {
+      return res.status(404).json({ error: "Még nincs rendelésed!" });
+    }
+    
+    // Dinamikus import az archiver csomaghoz
+    const archiver = (await import('archiver')).default;
+    
+    // ZIP stream létrehozása
+    const archive = archiver('zip', {
+      zlib: { level: 9 } // Maximum compression
+    });
+    
+    // Response headerek beállítása
+    res.attachment(`Nexora_Rendelesek_${Date.now()}.zip`);
+    res.setHeader('Content-Type', 'application/zip');
+    
+    // Pipe az archive-t a response-ba
+    archive.pipe(res);
+    
+    // Minden rendeléshez generálunk egy TXT fájlt
+    rendelesek.forEach((rendeles, index) => {
+      const szamla = rendeles.szamlazasi_adatok;
+      const tetelek = rendeles.rendeles_tetel;
+      
+      // TXT tartalom generálása
+      let txtContent = '';
+      txtContent += '═══════════════════════════════════════════════════════════════\n';
+      txtContent += '                    NEXORA WEBSHOP - SZÁMLA                     \n';
+      txtContent += '═══════════════════════════════════════════════════════════════\n\n';
+      
+      txtContent += `Rendelés azonosító: #${rendeles.id}\n`;
+      txtContent += `Rendelés dátuma: ${new Date(rendeles.rendelve).toLocaleString('hu-HU')}\n`;
+      txtContent += `Állapot: ${rendeles.allapot === 'feldolgozas_alatt' ? 'Feldolgozás alatt' : rendeles.allapot === 'teljesitve' ? 'Teljesítve' : 'Sikertelen'}\n`;
+      txtContent += `Fizetési mód: ${rendeles.fizetesi_mod === 'card' ? 'Bankkártya' : rendeles.fizetesi_mod === 'apple_pay' ? 'Apple Pay' : 'Google Pay'}\n\n`;
+      
+      txtContent += '───────────────────────────────────────────────────────────────\n';
+      txtContent += '                     SZÁMLÁZÁSI ADATOK                          \n';
+      txtContent += '───────────────────────────────────────────────────────────────\n\n';
+      
+      if (szamla) {
+        txtContent += `Név: ${szamla.nev}\n`;
+        txtContent += `Email: ${szamla.email}\n`;
+        txtContent += `Telefonszám: ${szamla.telefonszam}\n`;
+        txtContent += `Cím: ${szamla.orszag}, ${szamla.iranyitoszam} ${szamla.varos}\n`;
+        txtContent += `     ${szamla.utca_hazszam}\n\n`;
+      }
+      
+      txtContent += '───────────────────────────────────────────────────────────────\n';
+      txtContent += '                     MEGRENDELT TERMÉKEK                        \n';
+      txtContent += '───────────────────────────────────────────────────────────────\n\n';
+      
+      let reszosszeg = 0;
+      tetelek.forEach((tetel, i) => {
+        const ar = parseFloat(tetel.egysegar);
+        reszosszeg += ar;
+        
+        txtContent += `${i + 1}. ${tetel.termek_nev}\n`;
+        txtContent += `   Kategória: ${tetel.termek_kategoria}\n`;
+        txtContent += `   Ár: ${ar.toLocaleString('hu-HU')} Ft\n`;
+        txtContent += `   Aktivációs kulcs: ${tetel.aktivacios_kulcs || 'Hamarosan'}\n`;
+        txtContent += `   Állapot: ${tetel.kulcs_elkuldve ? '✓ Elküldve' : '⏳ Feldolgozás alatt'}\n\n`;
+      });
+      
+      txtContent += '───────────────────────────────────────────────────────────────\n';
+      txtContent += '                         ÖSSZEGZÉS                             \n';
+      txtContent += '───────────────────────────────────────────────────────────────\n\n';
+      
+      txtContent += `Részösszeg:              ${reszosszeg.toLocaleString('hu-HU')} Ft\n`;
+      txtContent += `Rendszerhasználati díj:  ${parseFloat(rendeles.rendszerhaszn_dij).toLocaleString('hu-HU')} Ft\n`;
+      txtContent += `────────────────────────────────────────────\n`;
+      txtContent += `VÉGÖSSZEG:               ${parseFloat(rendeles.vegosszeg).toLocaleString('hu-HU')} Ft\n\n`;
+      
+      txtContent += '═══════════════════════════════════════════════════════════════\n';
+      txtContent += '                  Köszönjük a vásárlást!                       \n';
+      txtContent += '                      www.nexora.hu                            \n';
+      txtContent += '═══════════════════════════════════════════════════════════════\n';
+      
+      // Fájlnév: Rendeles_ID_Datum.txt
+      const datum = new Date(rendeles.rendelve).toISOString().split('T')[0];
+      const fajlnev = `Rendeles_${rendeles.id}_${datum}.txt`;
+      
+      // TXT hozzáadása a ZIP-hez
+      archive.append(txtContent, { name: fajlnev });
+    });
+    
+    // ZIP véglegesítése
+    await archive.finalize();
+    
+  } catch (error) {
+    console.error("Rendelések letöltési hiba:", error);
+    
+    // Ha már elkezdtük a stream-et, nem küldhetünk JSON-t
+    if (!res.headersSent) {
+      return res.status(500).json({ 
+        error: "Hiba történt a rendelések letöltése során!",
+        details: error.message 
+      });
+    }
+  }
+});
+
 // Rendelés feldolgozás POST endpoint
 app.post("/order/create", authMiddleware, async (req, res) => {
   try {

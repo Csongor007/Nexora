@@ -21,6 +21,7 @@
   "dependencies": {
     "@prisma/adapter-mariadb": "6.19.0",
     "@prisma/client": "^6.19.0",
+    "archiver": "^7.0.1",
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.1",
     "cors": "^2.8.5",
