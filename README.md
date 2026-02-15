@@ -16,5 +16,6 @@
 4. `prisma generate`.
 5. `mariadb/heidisql` telepítése
 6. `HeidiSql-be` adatbázist létrehozni.
+7. `npm install archiver` biztosítja a "számla" létrehozását
 
 7. A projekt elérhető a [http://localhost:3000/](http://localhost:3000/).
