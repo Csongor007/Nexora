@@ -106,47 +106,47 @@ function showUserProfile() {
   const popup = document.getElementById("popupContent");
   popup.innerHTML = `
         <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Fiók adatok</h2>
-        <button onclick="downloadOrders()" style="padding: 12px; background: linear-gradient(135deg, #2ead2e 0%, #1e8c1e 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 10px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(46, 173, 46, 0.4);">
+        <button onclick="downloadOrders()" style="padding: 12px; background: linear-gradient(135deg, #2ead2e 0%, #1e8c1e 100%); color: #000; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 10px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(46, 173, 46, 0.4); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
             📄 Rendeléseim
         </button>
         <div style="font-family: Orbitron, sans-serif; color: #0f0; text-align: left; padding: 20px 0;">
             <p><strong>Név:</strong> ${window.loggedInUser.nev}</p>
             <p><strong>Email:</strong> ${window.loggedInUser.email}</p>
         </div>
-        <button onclick="showChangePasswordModal()" style="padding: 12px; background: linear-gradient(135deg, #ffb327 0%, #ffb327 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 10px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);">
+        <button onclick="showChangePasswordModal()" style="padding: 12px; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: #000; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 10px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
             🔒 Jelszó módosítása
         </button>
-        <button onclick="logout()" style="padding: 12px; background: #f00; color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; transition: all 0.3s;">Kijelentkezés</button>
+        <button onclick="logout()" style="padding: 12px; background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%); color: #000; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 51, 51, 0.5); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">Kijelentkezés</button>
     `;
 }
 
 function showChangePasswordModal() {
   const popup = document.getElementById("popupContent");
   popup.innerHTML = `
-        <h2 style="font-family: Orbitron, sans-serif; color: #ffb327;">🔒 Jelszó módosítása</h2>
+        <h2 style="font-family: Orbitron, sans-serif; color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);">🔒 Jelszó módosítása</h2>
         <form id="changePasswordForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
             <div>
                 <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px; font-family: Orbitron, sans-serif;">Jelenlegi jelszó *</label>
                 <input type="password" id="currentPassword" placeholder="Jelenlegi jelszó" required 
-                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid #ffb327; border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
+                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(0, 212, 255, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
             </div>
             
             <div>
                 <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px; font-family: Orbitron, sans-serif;">Új jelszó *</label>
                 <input type="password" id="newPassword" placeholder="Új jelszó (min. 6 karakter)" required minlength="6"
-                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid #ffb327; border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
+                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(0, 212, 255, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
             </div>
             
             <div>
                 <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px; font-family: Orbitron, sans-serif;">Új jelszó megerősítése *</label>
                 <input type="password" id="confirmPassword" placeholder="Új jelszó megerősítése" required minlength="6"
-                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid #ffb327; border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
+                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(0, 212, 255, 0.5); border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
             </div>
             
             <div id="passwordError" style="color: #ff3333; display: none; font-family: Orbitron, sans-serif; font-size: 0.9rem; text-align: center;"></div>
             <div id="passwordSuccess" style="color: #0f0; display: none; font-family: Orbitron, sans-serif; font-size: 0.9rem; text-align: center;"></div>
             
-            <button type="submit" style="padding: 12px; background: linear-gradient(135deg, #ffb327 0%, #ffb327 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; margin-top: 10px;">
+            <button type="submit" style="padding: 12px; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: #000; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
                 💾 Jelszó mentése
             </button>
         </form>
