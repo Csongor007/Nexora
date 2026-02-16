@@ -106,15 +106,121 @@ function showUserProfile() {
   const popup = document.getElementById("popupContent");
   popup.innerHTML = `
         <h2 style="font-family: Orbitron, sans-serif; color: #0f0;">Fiók adatok</h2>
-        <button onclick="downloadOrders()" style="padding: 12px; background: linear-gradient(135deg, #2ead2e 0%, #1e8c1e 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 15px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(46, 173, 46, 0.4);">
+        <button onclick="downloadOrders()" style="padding: 12px; background: linear-gradient(135deg, #2ead2e 0%, #1e8c1e 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 10px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(46, 173, 46, 0.4);">
             📄 Rendeléseim
         </button>
         <div style="font-family: Orbitron, sans-serif; color: #0f0; text-align: left; padding: 20px 0;">
             <p><strong>Név:</strong> ${window.loggedInUser.nev}</p>
             <p><strong>Email:</strong> ${window.loggedInUser.email}</p>
         </div>
+        <button onclick="showChangePasswordModal()" style="padding: 12px; background: linear-gradient(135deg, #ffb327 0%, #ffb327 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; margin-bottom: 10px; border-radius: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);">
+            🔒 Jelszó módosítása
+        </button>
         <button onclick="logout()" style="padding: 12px; background: #f00; color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; transition: all 0.3s;">Kijelentkezés</button>
     `;
+}
+
+function showChangePasswordModal() {
+  const popup = document.getElementById("popupContent");
+  popup.innerHTML = `
+        <h2 style="font-family: Orbitron, sans-serif; color: #ffb327;">🔒 Jelszó módosítása</h2>
+        <form id="changePasswordForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            <div>
+                <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px; font-family: Orbitron, sans-serif;">Jelenlegi jelszó *</label>
+                <input type="password" id="currentPassword" placeholder="Jelenlegi jelszó" required 
+                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid #ffb327; border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
+            </div>
+            
+            <div>
+                <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px; font-family: Orbitron, sans-serif;">Új jelszó *</label>
+                <input type="password" id="newPassword" placeholder="Új jelszó (min. 6 karakter)" required minlength="6"
+                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid #ffb327; border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
+            </div>
+            
+            <div>
+                <label style="color: #ccc; font-size: 0.9rem; display: block; margin-bottom: 5px; font-family: Orbitron, sans-serif;">Új jelszó megerősítése *</label>
+                <input type="password" id="confirmPassword" placeholder="Új jelszó megerősítése" required minlength="6"
+                       style="width: 100%; padding: 12px; box-sizing: border-box; background: rgba(20, 20, 20, 0.8); border: 2px solid #ffb327; border-radius: 8px; color: white; font-family: Orbitron, sans-serif;">
+            </div>
+            
+            <div id="passwordError" style="color: #ff3333; display: none; font-family: Orbitron, sans-serif; font-size: 0.9rem; text-align: center;"></div>
+            <div id="passwordSuccess" style="color: #0f0; display: none; font-family: Orbitron, sans-serif; font-size: 0.9rem; text-align: center;"></div>
+            
+            <button type="submit" style="padding: 12px; background: linear-gradient(135deg, #ffb327 0%, #ffb327 100%); color: #fff; border: none; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; margin-top: 10px;">
+                💾 Jelszó mentése
+            </button>
+        </form>
+        <button onclick="renderPopup()" style="padding: 12px; background: transparent; color: #0f0; border: 2px solid #0f0; width: 100%; cursor: pointer; font-family: Orbitron, sans-serif; font-weight: bold; border-radius: 8px; margin-top: 10px;">
+            ← Vissza
+        </button>
+    `;
+  
+  document.getElementById("changePasswordForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await handlePasswordChange();
+  });
+}
+
+async function handlePasswordChange() {
+  const currentPassword = document.getElementById("currentPassword").value;
+  const newPassword = document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  
+  const errorDiv = document.getElementById("passwordError");
+  const successDiv = document.getElementById("passwordSuccess");
+  
+  // Reset messages
+  errorDiv.style.display = "none";
+  successDiv.style.display = "none";
+  
+  // Validáció
+  if (newPassword.length < 6) {
+    errorDiv.textContent = "Az új jelszónak legalább 6 karakter hosszúnak kell lennie!";
+    errorDiv.style.display = "block";
+    return;
+  }
+  
+  if (newPassword !== confirmPassword) {
+    errorDiv.textContent = "Az új jelszavak nem egyeznek!";
+    errorDiv.style.display = "block";
+    return;
+  }
+  
+  if (currentPassword === newPassword) {
+    errorDiv.textContent = "Az új jelszó nem lehet ugyanaz, mint a jelenlegi!";
+    errorDiv.style.display = "block";
+    return;
+  }
+  
+  try {
+    const response = await fetch("/change-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        currentPassword,
+        newPassword
+      }),
+    });
+    
+    const data = await response.json();
+    
+    if (response.ok) {
+      successDiv.textContent = "✅ Jelszó sikeresen megváltoztatva!";
+      successDiv.style.display = "block";
+      
+      // 2 másodperc múlva vissza a profil nézethez
+      setTimeout(() => {
+        renderPopup();
+      }, 2000);
+    } else {
+      errorDiv.textContent = data.error || "Hiba történt a jelszó módosítása során!";
+      errorDiv.style.display = "block";
+    }
+  } catch (error) {
+    console.error("Jelszó módosítási hiba:", error);
+    errorDiv.textContent = "Hiba történt a kapcsolat során!";
+    errorDiv.style.display = "block";
+  }
 }
 
 async function downloadOrders() {

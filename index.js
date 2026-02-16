@@ -214,6 +214,60 @@ app.get("/logout", (req, res) => {
   });
 });
 
+// Jelszó módosítása POST endpoint
+app.post("/change-password", authMiddleware, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    const userId = req.session.userId;
+
+    // Validáció
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: "Minden mező kitöltése kötelező!" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: "Az új jelszónak legalább 6 karakter hosszúnak kell lennie!" });
+    }
+
+    // Felhasználó lekérése
+    const user = await DB.felhasznalok.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "Felhasználó nem található!" });
+    }
+
+    // Jelenlegi jelszó ellenőrzése
+    const passwordMatch = await bcrypt.compare(currentPassword, user.jelszo_hash);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "A jelenlegi jelszó helytelen!" });
+    }
+
+    // Új jelszó hashelése
+    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+
+    // Jelszó frissítése az adatbázisban
+    await DB.felhasznalok.update({
+      where: { id: userId },
+      data: {
+        jelszo_hash: newPasswordHash,
+      },
+    });
+
+    console.log(`✅ Felhasználó #${userId} sikeresen módosította a jelszavát`);
+
+    return res.json({
+      success: true,
+      message: "Jelszó sikeresen megváltoztatva!",
+    });
+  } catch (error) {
+    console.error("Jelszó módosítási hiba:", error);
+    return res.status(500).json({ error: "Hiba történt a jelszó módosítása során!" });
+  }
+});
+
 // Kapcsolatfelvétel POST
 app.post("/contact", async (req, res) => {
   try {
