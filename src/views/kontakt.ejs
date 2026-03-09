@@ -23,7 +23,6 @@
   </head>
 
   <body>
-    <!-- HÁTTÉR ELEMEK – ÁTHELYEZVE A BODY-BE -->
     <div class="box">
       <div class="wave -one"></div>
       <div class="wave -two"></div>
@@ -34,7 +33,6 @@
     <div id="particle-background"></div>
     <div class="transition transition-1 is-active"></div>
 
-    <!-- HEADER -->
     <header>
       <button class="menu-toggle">☰</button>
 
@@ -67,7 +65,6 @@
       </nav>
     </header>
 
-    <!-- MAIN -->
     <main style="z-index: 1">
       <div class="container">
         <form id="contactForm">
@@ -104,12 +101,10 @@
       </div>
     </main>
 
-    <!-- POPUP OVERLAY -->
     <div class="popup-overlay" id="popupOverlay">
       <div class="popup" id="popupContent"></div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-content">
         <a href="/"
@@ -129,12 +124,10 @@
       </script>
     </footer>
 
-    <!-- USER ADAT ÁTADÁSA -->
     <script>
       window.loggedInUser = <%- user ? JSON.stringify(user) : 'null' %>;
     </script>
 
-    <!-- SCRIPTS -->
     <script src="/js/contact-handler.js" defer></script>
     <script src="/js/auth-popup.js" defer></script>
   </body>

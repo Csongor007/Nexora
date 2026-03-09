@@ -52,7 +52,7 @@ h3 {
   font-family: "Orbitron", sans-serif;
 }
 
-.fika {
+.osszefoglalo {
   width: 100%;
   position: relative;
   text-align: left;
@@ -376,7 +376,7 @@ main {
     cursor: pointer;
     z-index: 1001;
   }
-  .fika {
+  .osszefoglalo {
     position: relative;
     left: -20px;
     font-size: 15px;
