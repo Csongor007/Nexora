@@ -1,0 +1,65 @@
+Telepítési útmutató — friss gépre
+===================================
+
+Előfeltétel: a projekt le van klónozva GitHubról.
+  git clone <repo_url>
+  cd Nexora
+  code .
+
+
+1. Node.js telepítése
+---------------------
+- Letöltés: https://nodejs.org (LTS verzió)
+- Telepítő futtatása, alapértelmezett beállítások, "Add to PATH" legyen bepipálva
+- Ellenőrzés (cmd):
+    node --version
+    npm --version
+
+
+2. MariaDB telepítése
+---------------------
+- Letöltés: https://mariadb.org/download/ (Windows x64 MSI)
+- Telepítés közben adj meg egy root jelszót (pl. tanulo11)
+- Port maradjon 3306
+
+
+3. HeidiSQL telepítése
+----------------------
+- Letöltés: https://www.heidisql.com/download.php
+- Telepítés alapértelmezett beállításokkal
+
+
+4. Adatbázis létrehozása HeidiSQL-ben
+--------------------------------------
+- Indítsd el a HeidiSQL-t
+- Új kapcsolat: Host: 127.0.0.1, User: root, Jelszó: tanulo11, Port: 3306
+- Kapcsolódj, hozz létre egy adatbázistáblát(pl. Nexora néven), majd ez kerül a .env fájl végére.
+
+
+5. .env fájl létrehozása
+-------------------------
+- A projekt gyökérmappájában hozz létre egy .env fájlt az alábbi tartalommal:
+
+   
+    DATABASE_URL="mysql://root:tanulo11@127.0.0.1:3306/Nexora"
+
+
+6. Csomagok telepítése
+-----------------------
+    npm install
+!!MINDEN PARANCSOT A VS CODE TERMINÁLBA ÍRJUNK!!
+
+7. Prisma szinkronizálása
+--------------------------
+    npx prisma generate
+    npx prisma db push
+
+
+8. Szerver indítása
+--------------------
+    npm run dev
+
+- Ha minden rendben: "Server is running on http://localhost:3000"
+
+U.I.: Ha az npm parancsok nem működnek, rendszergazdaként elkell indítani a Windows PowerShell alkalmazást, majd a következő parancsot kell beírni.
+Set-ExecutionPolicy Unrestricted
